@@ -74,10 +74,6 @@
   path = vim/bundle/tpope-vim-rails
   url = https://github.com/tpope/vim-rails.git
   ignore = dirty
-[submodule "vim/bundle/vim-ruby-vim-ruby"]
-  path = vim/bundle/vim-ruby-vim-ruby
-  url = https://github.com/vim-ruby/vim-ruby.git
-  ignore = dirty
 [submodule "vim/bundle/ecomba-vim-ruby-refactoring"]
   path = vim/bundle/ecomba-vim-ruby-refactoring
   url = https://github.com/ecomba/vim-ruby-refactoring
@@ -310,10 +306,6 @@
 	path = vim/bundle/mattn-webapi-vim
 	url = https://github.com/mattn/webapi-vim.git
   ignore = dirty
-[submodule "vim/bundle/astashov-vim-ruby-debugger"]
-	path = vim/bundle/astashov-vim-ruby-debugger
-	url = https://github.com/astashov/vim-ruby-debugger
-  ignore = dirty
 [submodule "vim/bundle/aaronjensen-vim-sass-status"]
 	path = vim/bundle/aaronjensen-vim-sass-status
 	url = https://github.com/aaronjensen/vim-sass-status.git
@@ -329,3 +321,12 @@
 [submodule "vim/bundle/vim-scripts-SearchComplete"]
 	path = vim/bundle/vim-scripts-SearchComplete
 	url = https://github.com/vim-scripts/SearchComplete.git
+[submodule "vim/bundle/jmatraszek-vim-wombat"]
+	path = vim/bundle/jmatraszek-vim-wombat
+	url = https://github.com/jmatraszek/vim-wombat.git
+[submodule "vim/bundle/skammer-vim-css-color"]
+	path = vim/bundle/skammer-vim-css-color
+	url = https://github.com/skammer/vim-css-color
+[submodule "vim/bundle/bbommarito-vim-slim"]
+	path = vim/bundle/bbommarito-vim-slim
+	url = https://github.com/bbommarito/vim-slim.git

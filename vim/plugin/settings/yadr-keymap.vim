@@ -38,6 +38,7 @@ imap <silent> <D-d> _
 imap <silent> <D-K> -
 imap <silent> <D-D> -
 
+
 " ,# Surround a word with #{ruby interpolation}
 map ,# ysiw#
 vmap ,# c#{<C-R>"}<ESC>
@@ -246,3 +247,36 @@ map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 
 " Source current file Cmd-% (good for vim development)
 map <D-%> :so %<CR>
+
+nnoremap Y y$
+nnoremap ; :
+
+cnoreabbrev W w
+
+" Buffer next, previous
+imap <C-F> <C-X><C-O>
+nnoremap <silent> <F7> :NERDTreeToggle<CR>
+nnoremap <silent> <F8> :TlistToggle<CR>
+
+" Left/Right arrow keys change buffers in all modes
+noremap <Left> <Esc>:bp<CR>
+nnoremap <Left> <Esc>:bp<CR>
+vnoremap <Left> <Esc>:bp<CR>
+
+noremap <Right> <Esc>:bn<CR>
+nnoremap <Right> <Esc>:bn<CR>
+vnoremap <Right> <Esc>:bn<CR>
+
+" Disable up/down arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
