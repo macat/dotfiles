@@ -94,10 +94,6 @@
   path = vim/bundle/skwp-vim-html-escape
   url = https://github.com/skwp/vim-html-escape
   ignore = dirty
-[submodule "vim/bundle/Shougo-neocomplcache"]
-  path = vim/bundle/Shougo-neocomplcache
-  url = https://github.com/Shougo/neocomplcache.git
-  ignore = dirty
 [submodule "vim/bundle/skwp-vim-colors-solarized"]
   path = vim/bundle/skwp-vim-colors-solarized
   url = https://github.com/skwp/vim-colors-solarized

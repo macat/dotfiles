@@ -7,7 +7,7 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_smart_case = 1
 
 " default # of completions is 100, that's crazy
-let g:neocomplcache_max_list = 5
+let g:neocomplcache_max_list = 20
 
 " words less than 3 letters long aren't worth completing
 let g:neocomplcache_auto_completion_start_length = 3

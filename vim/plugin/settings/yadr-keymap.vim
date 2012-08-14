@@ -253,6 +253,8 @@ nnoremap ; :
 
 cnoreabbrev W w
 
+noremap <Leader>s :update<CR>
+
 " Buffer next, previous
 imap <C-F> <C-X><C-O>
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
