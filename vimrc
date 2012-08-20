@@ -65,6 +65,13 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+au BufRead,BufNewFile *.py  set ai sw=4 sts=4 et " Doc strs
+au BufRead,BufNewFile *.js  set ai sw=2 sts=2 et " Doc strs
+au BufRead,BufNewFile *.html set ai sw=2 sts=2 et " Doc strs
+au BufRead,BufNewFile *.json set ai sw=4 sts=4 et " Doc strs
+au BufNewFile *.py,*.pyw,*.c,*.h,*.json set fileformat=unix
+au! BufRead,BufNewFile *.json setfiletype json 
+
 filetype plugin on
 filetype indent on
 
@@ -102,3 +109,9 @@ set wildignore+=*.png,*.jpg,*.gif
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+" ================ Window ===========================
+" Long lines
+set wrap
+set textwidth=79
+set formatoptions=qn1

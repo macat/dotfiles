@@ -326,3 +326,6 @@
 [submodule "vim/bundle/bbommarito-vim-slim"]
 	path = vim/bundle/bbommarito-vim-slim
 	url = https://github.com/bbommarito/vim-slim.git
+[submodule "vim/bundle/ervandew-supertab"]
+	path = vim/bundle/ervandew-supertab
+	url = https://github.com/ervandew/supertab.git
