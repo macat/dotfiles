@@ -394,6 +394,7 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
  * `sk` - unsplit a link (k = up)
  * `,he` - Html Escape
  * `,hu` - Html Unescape
+ * `,hp` - Html Preview (open in Safari)
  * `Cmd-Shift-A` - align things (type a character/expression to align by, works in visual mode or by itself)
  * `:ColorToggle` - turn on #abc123 color highlighting (useful for css)
  * `:gitv` - Git log browsers
@@ -502,7 +503,9 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
 
 ### Overriding vim settings
 
-You may use `~/.vimrc.before` for settings like the __leader__ setting. You may `~/.vimrc.after` for any additional overrides/settings.
+You may use `~/.vimrc.before` for settings like the __leader__ setting. 
+You may `~/.vimrc.after` (for those transitioning from janus) or in `~/.yadr/vim/after/.vimrc.after` for any additional overrides/settings.
+If you didn't have janus before, it is recommended to just put it in `~/.yadr/vim/after` so you can better manage your overrides.
 
 
 ### Adding your own vim plugins

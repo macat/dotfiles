@@ -283,3 +283,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap <leader><space> :noh<cr>
+
+" ,hp = html preview
+map <silent> ,hp :!open -a Safari %<CR><CR>
