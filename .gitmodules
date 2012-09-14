@@ -325,3 +325,12 @@
 [submodule "vim/bundle/ervandew-supertab"]
 	path = vim/bundle/ervandew-supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "vim/bundle/29decibel-codeschool-vim-theme"]
+	path = vim/bundle/29decibel-codeschool-vim-theme
+	url = https://github.com/29decibel/codeschool-vim-theme.git
+[submodule "vim/bundle/matthewtodd-vim-twilight"]
+	path = vim/bundle/matthewtodd-vim-twilight
+	url = https://github.com/matthewtodd/vim-twilight.git
+[submodule "vim/bundle/chriskempson-vim-tomorrow-theme"]
+	path = vim/bundle/chriskempson-vim-tomorrow-theme
+	url = https://github.com/chriskempson/vim-tomorrow-theme
