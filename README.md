@@ -5,19 +5,14 @@
      _____| / ___ ( (_| | |
     (_______\_____|\____|_|
 
-    # Yet Another Dotfile Repo v0.9
-    # Alpha Release Please Report Bugs
+    # Yet Another Dotfile Repo v1.0
+    # Now with Prezto!
 
     git clone https://github.com/skwp/dotfiles ~/.yadr
     cd ~/.yadr && rake install
 
-    # Your dotfiles are safe! YADR will not
-    # overwrite anything. Please read on for
-    # install directions!
-
 This is a collection of best of breed tools from across the web,
 from scouring other people's dotfile repos, blogs, and projects.
-
 
 ## What is YADR?
 
@@ -29,17 +24,9 @@ from scouring other people's dotfile repos, blogs, and projects.
   * Avoid stressful hand motions, e.g. remap Esc to caps lock key, remap underscore to Alt-k in vim, make window management in vim easy.
   * Easy to use plugin architecture, no config files to edit.
   * Pick one tool and use it everywhere: vim-ize everything
-  * **NEW Beautiful, easy to read and small vimrc**
-  * **NEW No key overrides or custom hackery in vimrc, everything in well factored snippets in .vim/plugin/settings**
-
-
-## Why is this not a fork of Janus?
-Janus is an amazing _first effort_ to deliver a ready-to-use vim setup and is a huge inspiration to us all.
-
-**However as any first effort, it paves the way to improvements:**
-
-  * Much larger list of vim plugins, specifically geared to Ruby/Rails/Git development.
-  * Optimized support for MacVim only means less things will break because we don't worry about linux or gvim.
+  * Beautiful, easy to read and small vimrc**
+  * No key overrides or custom hackery in vimrc, everything in well factored snippets in .vim/plugin/settings**
+  * Much larger list of vim plugins than Janus, specifically geared to Ruby/Rails/Git development.
   * Optimized support for Solarized color scheme only, everything guaranteed to Look Good. Your eyes will thank you.
   * All plugins tested with Solarized and custom color maps provided where needed to ensure your eyes will not bleed.
   * No configuration file to maintain. YADR uses tiny ruby scripts to wrap git submodule maintenance.
@@ -47,87 +34,10 @@ Janus is an amazing _first effort_ to deliver a ready-to-use vim setup and is a 
   * All keymaps and customization in small, easy to maintain files under .vim/plugin/settings
   * More than just vim plugins - great shell aliases, osx, and irb/pry tweaks to make you more productive.
 
-
 ## Screenshot
 ![screenshot](http://i.imgur.com/afzuR.png)
 
-
-## Before you start
-
-For the love of all that is holy, stop abusing your hands!
-Remap caps-lock to escape: http://pqrs.org/macosx/keyremap4macbook/extra.html
-
-## Debugging vim keymappings
-
-This is so useful, it needs to be at the top. If you are having unexpected behavior, wondering why a particular key works the way it does,
-use: `:map [keycombo]` (e.g. `:map <C-\>`) to see what the key is mapped to. For bonus points, you can see where the mapping was set by using `:verbose map [keycombo]`.
-If you omit the key combo, you'll get a list of all the maps. You can do the same thing with nmap, imap, vmap, etc.
-
-## Dependencies
-
-YADR is opinionated. To get the most out of using it, you should install
-all the software it depends on.
-
-### Patched fonts for Vim-Powerline
-
-Please install fonts from fonts/ directory. These are used to give a really nice vim status line.
-
-### [Homebrew](http://mxcl.github.com/homebrew/)
-
-Homebrew is _the missing package manager for OSX_. To install:
-
-```bash
-/usr/bin/ruby <(curl -fsSk https://raw.github.com/mxcl/homebrew/go)
-```
-
-With homebrew installed, install some packages:
-
-```bash
-brew install ack ctags git hub macvim
-```
-
-### Ruby Debugger
-
-This gem is used to give you visual IDE-style debugging within vim, combined
-with the vim-ruby-debugger plugin:
-
-```bash
-gem install ruby-debug-ide
-```
-
-### [ctags](http://ctags.sourceforge.net/)
-
-Vim will complain every time you save a file if you do not have ctags installed correctly. We
-assume you have installed ctags via homebrew. If you have homebrew setup correctly running
-`which ctags` should output `/usr/local/bin/ctags`. If you get something else do this:
-
-Make sure `/usr/local/bin` is before `/usr/bin` in your PATH.
-
-If that doesn't work, move the OSX supplied ctags [like so](http://www.mattpolito.info/post/1648956809/ctags-got-you-down):
-
-```bash
-sudo mv /usr/bin/ctags /usr/bin/ctags_original
-```
-
-### [oh-my-zsh](https://github.com/sorin-ionescu/prezto)
-
-```bash
-git clone --recursive git://github.com/sorin-ionescu/prezto.git ~/.oh-my-zsh
-```
-
-We prefer the @sorin-ionescu rewrite of Oh My Zsh. It will eventually be shipped
-as a submodule of YADR, although you can use the original @robbyrussell version as well.
-
-You only need to do the one command above. The rest of the installation is done
-by YADR, which ships with a tie-in to sorin's OMZ.
-
-### [fasd](https://github.com/clvv/fasd)
-
-fasd gives you handy shell commands `f`,`a`,`s`,`d`, and `z` to jump to recently used files.
-Read more at the project's home page. Or just type `z` followed by a partial reference to
-a recent directory to see how it works.
-
-## Installation
+# Installation
 
 Installation is automated via `rake` and the `yadr` command. To get
 started please run:
@@ -137,33 +47,62 @@ git clone https://github.com/skwp/dotfiles ~/.yadr
 cd ~/.yadr && rake install
 ```
 
-Open the fonts in fonts/ and click Install Font for every font that you want.
-You must install Inconsolata to have YADR's powerline theme work correctly out of the box.
-
 Note: YADR will not destroy any of your files unless you tell it to.
 
-
-## Upgrading
+### Upgrading
 
 Upgrading is easy.
 
 ```bash
 cd ~/.yadr
 git pull origin master
-rake install
+rake update
+```
+
+# What's included, and how to customize?
+
+Read on to learn what YADR provides!
+
+## Public service announcement: stop abusing your hands!
+
+[Remap caps-lock to escape](http://pqrs.org/macosx/keyremap4macbook/extra.html)
+
+The escape key is the single most used key in vim.
+Old keyboards used to have Ctrl where caps lock is today. But it's even better if you put escape there.
+If you're hitting a small target in the corner, you are slowing yourself down considerably, and probably damaging your hands with repetitive strain injuries.
+
+### [Homebrew](http://mxcl.github.com/homebrew/)
+
+Homebrew is _the missing package manager for OSX_. Installed automatically.
+
+We automatically install a few useful packages including ack, ctags, git, and hub
+You can install macvim from brew as well, or download it from their website.
+
+```bash
+brew install ack ctags git hub macvim
 ```
 
 
-## ZSH
+### Github Issues: [ghi gem](https://github.com/stephencelis/ghi)
+
+We include the `ghi` command. Try `ghi list` and have fun managing issues from command line!
+
+### Ruby Debugger
+
+This gem is optonal and not included. It's used to give you visual IDE-style debugging within vim, combined
+with the vim-ruby-debugger plugin. To install:
+
+```bash
+gem install ruby-debug-ide
+```
+
+### ZSH
 
 After a lifetime of bash, I am now using ZSH as my default shell because of its awesome globbing
 and autocomplete features (the spelling fixer autocomplete is worth the money alone).
 
 Migrating from bash to zsh is essentially pain free. The zshrc provided here
-restores the only feature that I felt was 'broken' which is the Ctrl-R reverse history search.
-
-While I am not going to support bash out of the box here, YADR _should_ work with bash if
-you just source the _aliases_ file. However, you soul will sing if you install zsh. I promise.
+restores a few features that I felt was 'broken' including Ctrl-R reverse history search.
 
 Lots of things I do every day are done with two or three character
 mnemonic aliases. Please feel free to edit them:
@@ -171,64 +110,53 @@ mnemonic aliases. Please feel free to edit them:
     ae # alias edit
     ar # alias reload
 
-### ZSH Customizations
+### [Prezto](https://github.com/sorin-ionescu/prezto)
+
+For a more complete Zsh experience we use **[Prezto](http://github.com/sorin-ionescu/prezto)**.
+Prezto is included as a submodule.
+
+### Adding your own ZSH theme
+
+If you want to add your own zsh theme, you can place it into ~/.zsh.prompts and it will automatically be picked up by the prompt loader.
+
+Make sure you follow the naming convention of `prompt_[name]_setup`
+
+```
+touch ~/.zsh.prompts/prompt_mytheme_setup
+```
+
+Check out ~/.yadr/zsh/prezto-themes/prompt_skwp_setup for an example of how to write a prompt.
+See also the [Prezto](https://github.com/sorin-ionescu/prezto) project for more info on themes.
+
+### Customizing ZSH & Picking a theme
+
+If you want to customize your zsh experience, yadr provides two hooks via ~/.zsh.after/ and ~/.zsh.before/ directories.
+In these directories, you can place files to customize things that load before and after other zsh customizations that come from ~/.yadr/zsh/*
+
+For example, to override the theme, you can do something like this:
+```
+echo "prompt skwp" > ~/.zsh.after/prompt.zsh
+```
+
+Next time you load your shell, this file will be read and your prompt will be the skwp prompt. Use `prompt -l` to see the available prompts.
+
+### Included ZSH Customizations
 
  * Vim mode
  * Bash style ctrl-R for reverse history finder
  * Ctrl-x,Ctrl-l to insert output of last command
  * Fuzzy matching - if you mistype a directory name, tab completion will fix it
+ * [fasd](https://github.com/clvv/fasd) integration - hit `z` and partial match for recently used directory. Tab completion enabled.
+ * Syntax highlighting as you type commands
+ * Lots more!
 
-### How To Customize ZSH
+### [Pry](http://pry.github.com/) 
+Pry offers a much better out of the box IRB experience with colors, tab completion, and lots of other tricks. You can also use it
+as an actual debugger on MRI 1.9.2+ by installing [pry-debugger](https://github.com/nixme/pry-debugger).
 
-YADR allows you to completely customize your ZSH without having to fork and maintain the project. Here's how it works: YADR will
-source (include) any files in `.yadr/custom/zsh/before/*` or `.yadr/custom/zsh/after/*`. The `before` files are
-useful for setting the theme and plugins. `after` files allow you to override options set by YADR, define your own aliases, etc.
+[Learn more about YADR's pry customizations and how to install](https://github.com/skwp/dotfiles/blob/master/README-pry.md)
 
-To make your life easier, create a `zsh` folder in your Dropbox (or as a git repo) and symlink it into `~/.yadr/custom`. Do it like this:
-
-```bash
-ln -s ~/Dropbox/path/to/zsh ~/.yadr/custom/zsh
-```
-
-Create as many `before/whatever.zsh` or `after/whatever.zsh` files as you need within the `zsh` directory. Please see `custom/zsh.sample` for
-an example.
-
-
-## Pry
-
-Pry (http://pry.github.com/) offers a much better out of the box IRB experience
-with colors, tab completion, and lots of other tricks. You can also use it
-as an actual debugger by installing pry-nav (https://github.com/nixme/pry-nav) to 
-get colorized debugging that shows you where you are as you step through.
-
-You should:
-
-### Install the gem
-
-```bash
-gem install pry
-gem install pry-nav
-gem install awesome_print
-```
-
-### Use pry
-
-  * as irb: `pry`
-  * as rails console: `script/console --irb=pry`
-  * as a debugger: `require 'pry'; binding.pry` in your code (or just type `pry!<space>` to make vim do it)
-
-### Pry Customizations:
-
- * `clear` command to clear screen
- * `sql` command to execute something (within a rails console)
- * `c` (continue) `n` (next) `s` (step) commands for debugging using pry-nav
- * all objects displayed in readable format (colorized, sorted hash keys) - via awesome_print
- * a few color modifications to make it more useable
- * type `help` to see all the commands
-
-## Git
-
-### User Info
+### Git User Info
 
 Since the gitconfig doesn't contain the user info, I recommend using env variables. Put the following in
 your `~/.secrets` file which is automatically referenced by the provided zshrc:
@@ -256,16 +184,16 @@ your `~/.secrets` file which is automatically referenced by the provided zshrc:
   * Slightly improved colors for diff
   * `git unstage` (remove from index) and `git uncommit` (revert to the time prior to the last commit - dangerous if already pushed) aliases
 
-## RubyGems
+### RubyGems
 
 A .gemrc is included. Never again type `gem install whatever --no-ri --no-rdoc`. `--no-ri --no-rdoc` is done by default.
 
-## Vimization of everything
+### Vimization of everything
 
 The provided inputrc and editrc will turn your various command line tools like mysql and irb into vim prompts. There's
 also an included Ctrl-R reverse history search feature in editrc, very useful in irb.
 
-## Vim Configuration
+### Vim Configuration
 
 The .vimrc is well commented and broken up by settings. I encourage you
 to take a look and learn some of my handy aliases, or comment them out
@@ -277,6 +205,13 @@ if you don't like them, or make your own.
 The files in vim/plugin/settings are customizations stored on a per-plugin
 basis. The main keymap is available in skwp-keymap.vim, but some of the vim
 files contain key mappings as well (TODO: probably will move them out to skwp-keymap.vim)
+
+### Debugging vim keymappings
+
+If you are having unexpected behavior, wondering why a particular key works the way it does,
+use: `:map [keycombo]` (e.g. `:map <C-\>`) to see what the key is mapped to. For bonus points, you can see where the mapping was set by using `:verbose map [keycombo]`.
+If you omit the key combo, you'll get a list of all the maps. You can do the same thing with nmap, imap, vmap, etc.
+
 
 #### Navigation
 
@@ -294,6 +229,7 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
 #### Rails
 
  * `Cmd-Shift-R` to use vim-ruby-conque to run a spec file. `Cmd-Shift-L` to run from a line (individual it block), `,Cmd-Shift-R` to rerun the last run command (great for re-running specs)
+ * :Rspec1 and :Rspec2 to switch between rspec versions for the vim-ruby-conque runner
  * `,vv` and `,cc` to switch between view and controller
 
 #### Surround.vim customizations
@@ -305,8 +241,11 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
 #### Search/Code Navigation
 
  * `,f` - instantly Find definition of class (must have exuberant ctags installed)
- * `,F` - same as ,f but in a vertical split
- * `,gf` - same as vim normal gf (go to file), but in a vertical split
+ * `,F` - same as `,f` but in a vertical split
+ * `,,f` - jump to Method. Same as vim's built in jump to tag, but much more aware of ruby bang_methods! and method.invocations!
+ * `,,F` - same as `,,f` but in a vertical split
+ * `,gf` or `Ctrl-f` - same as vim normal gf (go to file), but in a vertical split (works with file.rb:123 line numbers also)
+ * `gF` - standard vim mapping, here for completeness (go to file at line number)
  * `K` - GitGrep the current word under the cursor and show results in quickfix window
  * `,K` - GitGrep the current word up to next exclamation point (useful for ruby foo! methods)
  * `Cmd-*` - highlight all occurrences of current word (similar to regular `*` except doesn't move)
@@ -381,6 +320,9 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
 
 #### Utility
 
+ * `,orb` - outer ruby block. takes you one level up from nested blocks (great for rspec)
+ * `crs`, `crc`, `cru` via abolish.vim, coerce to snake_case, camelCase, and UPPERCASE. There are more `:help abolish`
+ * `:NR` - NarrowRgn - use this on a bit of selected text to create a new split with just that text. Do some work on it, then :wq it to get the results back.
  * `,ig` - toggle visual indentation guides
  * `,cf` - Copy Filename of current file (full path) into system (not vi) paste buffer
  * `,cn` - Copy Filename of current file (name only, no path)
@@ -438,7 +380,7 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
  * AnsiEsc - inteprets ansi color codes inside log files. great for looking at Rails logs
  * solarized - a color scheme scientifically calibrated for awesomeness (including skwp mods for ShowMarks)
  * csapprox - helps colors to be represented correctly on terminals (even though we expect to use MacVim)
- * Powerline - beautiful vim status bar. Requires patched fonts (install from fonts/ directory)
+ * Powerline - beautiful vim status bar. Requires patched fonts (installed from fonts/ directory)
 
 #### Coding
 
@@ -503,7 +445,7 @@ files contain key mappings as well (TODO: probably will move them out to skwp-ke
 
 ### Overriding vim settings
 
-You may use `~/.vimrc.before` for settings like the __leader__ setting. 
+You may use `~/.vimrc.before` for settings like the __leader__ setting.
 You may `~/.vimrc.after` (for those transitioning from janus) or in `~/.yadr/vim/after/.vimrc.after` for any additional overrides/settings.
 If you didn't have janus before, it is recommended to just put it in `~/.yadr/vim/after` so you can better manage your overrides.
 
@@ -513,10 +455,6 @@ If you didn't have janus before, it is recommended to just put it in `~/.yadr/vi
 YADR comes with a dead simple plugin manager that just uses git submodules, without any fancy config files.
 
     yav -u https://github.com/airblade/vim-rooter
-
-You can update all the plugins easily:
-
-    yuv
 
 Delete a plugin (Coming Soon)
 
@@ -562,7 +500,7 @@ and other places for the cream of the crop of vim awesomeness.
  * https://github.com/tpope
  * https://github.com/scrooloose
  * https://github.com/kana
- * https://github.com/robbyrussell
+ * https://github.com/sorin-ionescu
  * https://github.com/nelstrom
 
 And everything that's in the modules included in vim/bundle of course.
@@ -573,6 +511,7 @@ Please explore these people's work.
 
  * Initial Version: @skwp
  * Cleanup, auto installer: @kylewest
+ * Switch from oh-my-zsh to Presto: @JeanMertz
 
 
 ### For more tips and tricks

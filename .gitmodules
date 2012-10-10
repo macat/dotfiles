@@ -306,10 +306,6 @@
 	path = vim/bundle/skwp-vim-powerline
 	url = https://github.com/skwp/vim-powerline.git
   ignore = dirty
-[submodule "vim/bundle/vim-scripts-YankRing"]
-	path = vim/bundle/vim-scripts-YankRing
-	url = https://github.com/vim-scripts/YankRing.vim
-  ignore = dirty
 [submodule "vim/bundle/vim-scripts-SearchComplete"]
 	path = vim/bundle/vim-scripts-SearchComplete
 	url = https://github.com/vim-scripts/SearchComplete.git
@@ -319,9 +315,6 @@
 [submodule "vim/bundle/skammer-vim-css-color"]
 	path = vim/bundle/skammer-vim-css-color
 	url = https://github.com/skammer/vim-css-color
-[submodule "vim/bundle/bbommarito-vim-slim"]
-	path = vim/bundle/bbommarito-vim-slim
-	url = https://github.com/bbommarito/vim-slim.git
 [submodule "vim/bundle/ervandew-supertab"]
 	path = vim/bundle/ervandew-supertab
 	url = https://github.com/ervandew/supertab.git
@@ -334,3 +327,33 @@
 [submodule "vim/bundle/chriskempson-vim-tomorrow-theme"]
 	path = vim/bundle/chriskempson-vim-tomorrow-theme
 	url = https://github.com/chriskempson/vim-tomorrow-theme
+  ignore = dirty
+[submodule "vim/bundle/briancollins-vim-jst"]
+	path = vim/bundle/briancollins-vim-jst
+	url = https://github.com/briancollins/vim-jst
+  ignore = dirty
+[submodule "vim/bundle/pangloss-vim-javascript"]
+	path = vim/bundle/pangloss-vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+  ignore = dirty
+[submodule "vim/bundle/chrisbra-NrrwRgn"]
+	path = vim/bundle/chrisbra-NrrwRgn
+	url = https://github.com/chrisbra/NrrwRgn
+  ignore = dirty
+[submodule "zsh/prezto"]
+	path = zsh/prezto
+	url = https://github.com/sorin-ionescu/prezto.git
+  ignore = dirty
+[submodule "vim/bundle/skwp-YankRing"]
+	path = vim/bundle/skwp-YankRing
+	url = https://github.com/skwp/YankRing.vim
+  ignore = dirty
+[submodule "vim/bundle/tpope-vim-abolish"]
+	path = vim/bundle/tpope-vim-abolish
+	url = https://github.com/tpope/vim-abolish
+[submodule "vim/bundle/bbommarito-vim-slim"]
+	path = vim/bundle/bbommarito-vim-slim
+	url = https://github.com/bbommarito/vim-slim.git
+[submodule "vim/bundle/jtratner-vim-flavored-markdown"]
+	path = vim/bundle/jtratner-vim-flavored-markdown
+	url = https://github.com/jtratner/vim-flavored-markdown.git

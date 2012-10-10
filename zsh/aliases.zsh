@@ -1,11 +1,12 @@
 # Aliases in this file are bash and zsh compatible
 
 # Don't change. The following determines where YADR is installed.
-yadr=`find -L ~ -type file -maxdepth 2 -name .yadr | head | sed 's:\.yadr\/::'`
+yadr=$HOME/.yadr
 
 # YADR support
 alias yav='yadr vim-add-plugin'
-alias yuv='yadr vim-update-plugins'
+alias yuv='yadr update-plugins' #FIXME: backwards compatibility. Kill me after Jan 1, 2013
+alias yup='yadr update-plugins'
 alias yip='yadr init-plugins'
 
 # PS
@@ -59,6 +60,9 @@ alias gunc='git uncommit'
 alias gm='git merge'
 alias gms='git merge --squash'
 alias gam='git amend --reset-author'
+alias grv='git remote -v'
+alias grr='git remote rm'
+alias grad='git remote add'
 alias gr='git rebase'
 alias gra='git rebase --abort'
 alias ggrc='git rebase --continue'
@@ -71,8 +75,8 @@ alias gf='git fetch'
 alias gfch='git fetch'
 alias gd='git diff'
 alias gb='git b'
-alias gbd='git b -D'
-alias gdc='git diff --cached'
+alias gbd='git b -D -w'
+alias gdc='git diff --cached -w'
 alias gpub='grb publish'
 alias gtr='grb track'
 alias gpl='git pull'
@@ -106,6 +110,7 @@ alias co='script/console --irb=pry' # Rails 2
 alias ts='thin start'
 alias ms='mongrel_rails start'
 alias tfdl='tail -f log/development.log'
+alias tftl='tail -f log/test.log'
 
 # Vim/ctags "mctags = make ctags", using the ruby specific version
 # to save some time
