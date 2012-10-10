@@ -14,7 +14,7 @@ if has("gui_running")
   set lines=60
   set columns=190
 
-  set guifont=Inconsolata\ for\ Powerline:h14,Monaco:h17
+  set guifont=Inconsolata\ for\ Powerline:h16,Monaco:h17
 
   set colorcolumn=80
   set cursorline
