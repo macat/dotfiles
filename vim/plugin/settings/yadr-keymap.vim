@@ -20,7 +20,7 @@ nnoremap ,yw yiww
 nnoremap ,ow "_diwhp
 
 "make Y consistent with C and D
-nnoremap Y y$
+"nnoremap Y y$
 
 " ========================================
 " RSI Prevention - keyboard remaps
