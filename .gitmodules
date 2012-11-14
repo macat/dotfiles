@@ -270,10 +270,6 @@
 	path = vim/bundle/vim-scripts-Specky
 	url = https://github.com/vim-scripts/Specky.git
   ignore = dirty
-[submodule "zsh/zsh-syntax-highlighting"]
-	path = zsh/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-  ignore = dirty
 [submodule "vim/bundle/tpope-vim-bundler"]
 	path = vim/bundle/tpope-vim-bundler
 	url = https://github.com/tpope/vim-bundler
@@ -359,4 +355,12 @@
 [submodule "vim/bundle/xsunsmile-showmarks"]
 	path = vim/bundle/xsunsmile-showmarks
 	url = https://github.com/xsunsmile/showmarks.git
+  ignore = dirty
+[submodule "vim/bundle/digitaltoad-vim-jade"]
+	path = vim/bundle/digitaltoad-vim-jade
+	url = git://github.com/digitaltoad/vim-jade.git
+  ignore = dirty
+[submodule "vim/bundle/tpope-vim-ragtag"]
+	path = vim/bundle/tpope-vim-ragtag
+	url = https://github.com/tpope/vim-ragtag
   ignore = dirty

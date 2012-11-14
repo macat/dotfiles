@@ -47,7 +47,8 @@ git clone https://github.com/skwp/dotfiles ~/.yadr
 cd ~/.yadr && rake install
 ```
 
-Note: YADR will not destroy any of your files unless you tell it to.
+**Note:** YADR will automatically install all of its subcomponents. If you want to be asked
+about each one, use `ASK=true rake install`
 
 ### Upgrading
 
@@ -63,9 +64,9 @@ rake update
 
 Read on to learn what YADR provides!
 
-## Public service announcement: stop abusing your hands!
+### Public service announcement: stop abusing your hands!
 
-[Remap caps-lock to escape](http://pqrs.org/macosx/keyremap4macbook/extra.html)
+[Remap caps-lock to escape with PCKeyboardHack](http://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html)
 
 The escape key is the single most used key in vim.
 Old keyboards used to have Ctrl where caps lock is today. But it's even better if you put escape there.
@@ -79,9 +80,8 @@ We automatically install a few useful packages including ack, ctags, git, and hu
 You can install macvim from brew as well, or download it from their website.
 
 ```bash
-brew install ack ctags git hub macvim
+brew install ack ctags git hub macvim tmux reattach-to-user-namespace
 ```
-
 
 ### Github Issues: [ghi gem](https://github.com/stephencelis/ghi)
 
