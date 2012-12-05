@@ -35,7 +35,7 @@ from scouring other people's dotfile repos, blogs, and projects.
   * More than just vim plugins - great shell aliases, osx, and irb/pry tweaks to make you more productive.
 
 ## Screenshot
-![screenshot](http://i.imgur.com/afzuR.png)
+![screenshot](http://i.imgur.com/3C1Ze.png)
 
 # Installation
 
@@ -242,8 +242,6 @@ If you omit the key combo, you'll get a list of all the maps. You can do the sam
 
  * `,f` - instantly Find definition of class (must have exuberant ctags installed)
  * `,F` - same as `,f` but in a vertical split
- * `,,f` - jump to Method. Same as vim's built in jump to tag, but much more aware of ruby bang_methods! and method.invocations!
- * `,,F` - same as `,,f` but in a vertical split
  * `,gf` or `Ctrl-f` - same as vim normal gf (go to file), but in a vertical split (works with file.rb:123 line numbers also)
  * `gF` - standard vim mapping, here for completeness (go to file at line number)
  * `K` - GitGrep the current word under the cursor and show results in quickfix window
@@ -266,8 +264,7 @@ If you omit the key combo, you'll get a list of all the maps. You can do the sam
 
  * `,t` - CtrlP fuzzy file selector
  * `,b` - CtrlP buffer selector
- * `,m` - jump to method - CtrlP tag search within current buffer
- * `,M` - jump to any Method - CtrlP tag search within all buffers
+ * `Cmd-Shift-M` - jump to method - CtrlP tag search within current buffer
  * `,jm` jump (via CtrlP) to app/models
  * `,jc` app/controllers
  * `,jv` app/views
@@ -311,7 +308,6 @@ If you omit the key combo, you'll get a list of all the maps. You can do the sam
  * `ss` - horizontal split (`Ctrl-w,s`)
  * `,qo` - open quickfix window (this is where output from GitGrep goes)
  * `,qc` - close quickfix
- * `,gz` - zoom a window to max size and again to unzoom it (ZoomWin plugin, usually `C-w,o`)
 
 #### NERDTree Project Tree
 
@@ -392,6 +388,8 @@ If you omit the key combo, you'll get a list of all the maps. You can do the sam
  * necomplcache - intelligent and fast complete as you type, and added Command-Space to select a completion (same as Ctrl-N)
  * snipMate - offers textmate-like snippet expansion + scrooloose-snippets . try hitting TAB after typing a snippet
  * jasmine.vim - support for jasmine javascript unit testing, including snippets for it, before, etc..
+ * vim-javascript-syntax, vim-jquery - better highlighting
+ * TagHighlight - highlights class names and method names
  * vim-coffeescript - support for coffeescript, highlighting
  * vim-stylus - support for stylus css language
  * vim-bundler - work with bundled gems
