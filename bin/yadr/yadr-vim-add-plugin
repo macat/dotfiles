@@ -8,6 +8,7 @@ GitStyleBinary.command do
   opt :url, "Github url (http:// or git://)", :type => String
 
   run do |command|
+    p command
     unless ARGV.size==1
       puts "Example: #{$0} https://github.com/robgleeson/hammer.vim.git"
     else

@@ -364,3 +364,9 @@
 	path = vim/bundle/tpope-vim-ragtag
 	url = https://github.com/tpope/vim-ragtag
   ignore = dirty
+[submodule "vim/bundle/airblade-vim-rooter"]
+	path = vim/bundle/airblade-vim-rooter
+	url = https://github.com/airblade/vim-rooter.git
+[submodule "vim/bundle/epmatsw-ag"]
+	path = vim/bundle/epmatsw-ag
+	url = https://github.com/epmatsw/ag.vim.git
