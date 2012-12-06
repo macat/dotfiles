@@ -324,10 +324,6 @@
 	path = vim/bundle/pangloss-vim-javascript
 	url = https://github.com/pangloss/vim-javascript
   ignore = dirty
-[submodule "vim/bundle/chrisbra-NrrwRgn"]
-	path = vim/bundle/chrisbra-NrrwRgn
-	url = https://github.com/chrisbra/NrrwRgn
-  ignore = dirty
 [submodule "zsh/prezto"]
 	path = zsh/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
