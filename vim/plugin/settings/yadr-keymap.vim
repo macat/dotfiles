@@ -1,6 +1,3 @@
-" Arpeggio lets us define key-chord combos (simultaneous key presses)
-call arpeggio#load()
-
 " ========================================
 " General vim sanity improvements
 " ========================================
@@ -119,19 +116,6 @@ autocmd FileType rspec map <buffer> <D-k> {
 autocmd FileType javascript map <buffer> <D-k> }
 autocmd FileType javascript map <buffer> <D-j> {
 
-
-" Command-/ to toggle comments
-map <D-/> :TComment<CR>
-imap <D-/> <Esc>:TComment<CR>i
-
-"GitGrep - open up a git grep line, with a quote started for the search
-nnoremap ,gg :GitGrep ""<left>
-"GitGrep Current Partial
-nnoremap ,gcp :GitGrepCurrentPartial<CR>
-"GitGrep Current File
-nnoremap ,gcf :call GitGrep(expand("%:t:r"))<CR>
-
-
 "Move back and forth through previous and next buffers
 "with ,z and ,x
 nnoremap <silent> ,z :bp<CR>
@@ -151,16 +135,6 @@ nnoremap <silent> <C-j> <C-w>j
 " Zoom in and out of current window with ,gz
 map <silent> ,gz <C-w>o
 
-" Use numbers to pick the tab you want (like iTerm)
-map <silent> <D-1> :tabn 1<cr>
-map <silent> <D-2> :tabn 2<cr>
-map <silent> <D-3> :tabn 3<cr>
-map <silent> <D-4> :tabn 4<cr>
-map <silent> <D-5> :tabn 5<cr>
-map <silent> <D-6> :tabn 6<cr>
-map <silent> <D-7> :tabn 7<cr>
-map <silent> <D-8> :tabn 8<cr>
-map <silent> <D-9> :tabn 9<cr>
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -212,19 +186,6 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " swap them: http://items.sjbach.com/319/configuring-vim-right
 nnoremap ' `
 nnoremap ` '
-
-" ============================
-" Tabularize - alignment
-" ============================
-" Hit Cmd-Shift-A then type a character you want to align by
-nmap <D-A> :Tabularize /
-vmap <D-A> :Tabularize /
-
-" ============================
-" SplitJoin plugin
-" ============================
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
 
 " ============================
 " vim-ruby-conque

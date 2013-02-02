@@ -78,17 +78,9 @@
   path = vim/bundle/kien-ctrlp
   url = https://github.com/kien/ctrlp.vim
   ignore = dirty
-[submodule "vim/bundle/garbas-vim-snipmate"]
-  path = vim/bundle/garbas-vim-snipmate
-  url = https://github.com/garbas/vim-snipmate.git
-  ignore = dirty
 [submodule "vim/bundle/tomtom-tlib_vim"]
   path = vim/bundle/tomtom-tlib_vim
   url = https://github.com/tomtom/tlib_vim.git
-  ignore = dirty
-[submodule "vim/bundle/honza-snipmate-snippets"]
-  path = vim/bundle/honza-snipmate-snippets
-  url = https://github.com/honza/snipmate-snippets.git
   ignore = dirty
 [submodule "vim/bundle/skwp-vim-conque"]
   path = vim/bundle/skwp-vim-conque
@@ -145,3 +137,9 @@
 	path = vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim.git
   ignore = dirty
+[submodule "vim/bundle/aaronjensen-vim-sass-status"]
+	path = vim/bundle/aaronjensen-vim-sass-status
+	url = https://github.com/aaronjensen/vim-sass-status.git
+[submodule "vim/bundle/sirver-ultisnips"]
+	path = vim/bundle/sirver-ultisnips
+	url = https://github.com/SirVer/ultisnips.git
