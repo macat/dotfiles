@@ -24,3 +24,35 @@ nnoremap <silent> ,rxit :call ChangePendingRspecToXit()<cr>
 " insert a before { } block around a line
 nnoremap <silent> \bf ^ibefore { <esc>$a }
 
+function! CloseSingleConque()
+  try
+    if(exists("g:single_conque"))
+      exec "bdelete " . g:single_conque.buffer_name
+    endif
+  catch
+  endtry
+endfunction
+
+function! RunSingleConque(command)
+
+  " Close quickfix and location windows that are in the way
+  :cclose
+  :lclose
+
+  call CloseSingleConque()
+  " Keep track of the last command issued.
+  let g:last_conque_command = a:command
+  let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'], 1)
+endfunction
+
+function! RSpecFile()
+  call RunSingleConque("zeus rspec " . expand("%p"))
+endfunction
+map <leader>R :call RSpecFile() <CR>
+command! RSpecFile call RSpecFile()
+
+function! RSpecCurrent()
+  call RunSingleConque("zeus rspec " . expand("%p") . ":" . line("."))
+endfunction
+map <leader>r :call RSpecCurrent() <CR>
+command! RSpecCurrent call RSpecCurrent()
