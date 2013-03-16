@@ -6,6 +6,6 @@
 	path = zsh/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
   ignore = dirty
-[submodule "vim/bundle/gmarik-vundle"]
-	path = vim/bundle/gmarik-vundle
+[submodule "vim/vundle"]
+	path = vim/vundle
 	url = https://github.com/gmarik/vundle.git
