@@ -46,13 +46,13 @@ function! RunSingleConque(command)
 endfunction
 
 function! RSpecFile()
-  call RunSingleConque("zeus rspec " . expand("%p"))
+  call RunSingleConque("bin/rspec " . expand("%p"))
 endfunction
 map <leader>R :call RSpecFile() <CR>
 command! RSpecFile call RSpecFile()
 
 function! RSpecCurrent()
-  call RunSingleConque("zeus rspec " . expand("%p") . ":" . line("."))
+  call RunSingleConque("bin/rspec " . expand("%p") . ":" . line("."))
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()

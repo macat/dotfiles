@@ -84,9 +84,6 @@
 [submodule "vim/bundle/skammer-vim-css-color"]
 	path = vim/bundle/skammer-vim-css-color
 	url = https://github.com/skammer/vim-css-color
-[submodule "vim/bundle/ervandew-supertab"]
-	path = vim/bundle/ervandew-supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "vim/bundle/chriskempson-vim-tomorrow-theme"]
 	path = vim/bundle/chriskempson-vim-tomorrow-theme
 	url = https://github.com/chriskempson/vim-tomorrow-theme
@@ -115,3 +112,18 @@
 [submodule "vim/bundle/sirver-ultisnips"]
 	path = vim/bundle/sirver-ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/slim-template-vim-slim"]
+	path = vim/bundle/slim-template-vim-slim
+	url = https://github.com/slim-template/vim-slim.git
+[submodule "vim/bundle/skwp-vim-colors-solarized"]
+	path = vim/bundle/skwp-vim-colors-solarized
+	url = https://github.com/skwp/vim-colors-solarized
+[submodule "vim/bundle/tpope-vim-rvm"]
+	path = vim/bundle/tpope-vim-rvm
+	url = https://github.com/tpope/vim-rvm.git
+[submodule "vim/bundle/Valloric-YouCompleteMe"]
+	path = vim/bundle/Valloric-YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/bundle/digitaltoad-vim-jade"]
+	path = vim/bundle/digitaltoad-vim-jade
+	url = https://github.com/digitaltoad/vim-jade.git

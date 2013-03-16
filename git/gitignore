@@ -30,3 +30,6 @@ Session.vim
 # SASS
 # ----------------------------------------------------------------------------------------------
 .sass-cache
+
+config/initializers/better_errors.rb
+dump.rdb

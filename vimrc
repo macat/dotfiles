@@ -1,6 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set shell=bash
 
 " TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
 " source ~/.vimrc.before if it exists.
@@ -101,6 +102,8 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=node_modules/**
+set wildignore+=public/assets/**
 
 "
 
@@ -115,3 +118,6 @@ set sidescroll=1
 set wrap
 set textwidth=79
 set formatoptions=qn1
+
+" ================ Diff =============================
+set diffopt+=iwhite
