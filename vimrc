@@ -2,6 +2,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 set shell=bash
+filetype off
+
 
 " TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
 " source ~/.vimrc.before if it exists.
@@ -9,13 +11,44 @@ if filereadable(expand("~/.vimrc.before"))
   source ~/.vimrc.before
 endif
 
-" =============== Pathogen Initialization ===============
-" This loads all the plugins in ~/.vim/bundle
-" Use tpope's pathogen plugin to manage all other plugins
+" =============== Vundle Initialization ===============
 
-  runtime bundle/tpope-vim-pathogen/autoload/pathogen.vim
-  call pathogen#infect()
-  call pathogen#helptags()
+set rtp+=~/.vim/bundle/gmarik-vundle/
+call vundle#rc()
+
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-endwise.git'
+Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'vim-scripts/lastpos.vim'
+Bundle 'sjl/gundo.vim'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'mattn/gist-vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tomtom/tlib_vim.git'
+Bundle 'skwp/vim-conque'
+Bundle 'gregsexton/gitv'
+Bundle 'mattn/webapi-vim.git'
+Bundle 'skwp/vim-powerline.git'
+Bundle 'vim-scripts/SearchComplete.git'
+Bundle 'skammer/vim-css-color'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'airblade/vim-rooter.git'
+Bundle 'epmatsw/ag.vim.git'
+Bundle 'vim-scripts/TagHighlight.git'
+Bundle 'slim-template/vim-slim.git'
+Bundle 'aaronjensen/vim-sass-status.git'
+Bundle 'SirVer/ultisnips.git'
+Bundle 'slim-template/vim-slim.git'
+Bundle 'skwp/vim-colors-solarized'
+Bundle 'tpope/vim-rvm.git'
+Bundle 'Valloric/YouCompleteMe.git'
+Bundle 'digitaltoad/vim-jade.git'
 
 " ================ General Config ====================
 
