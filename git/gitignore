@@ -33,3 +33,5 @@ Session.vim
 
 config/initializers/better_errors.rb
 dump.rdb
+
+.ruby-version
