@@ -1,8 +1,10 @@
 " Make it beautiful - colors and fonts
 
 " http://ethanschoonover.com/solarized/vim-colors-solarized
+let g:solarized_termcolors = 256
 colorscheme solarized
-set background=dark
+set t_Co=256
+set background=light
 
 if has("gui_running")
   "tell the term has 256 colors
@@ -17,6 +19,7 @@ if has("gui_running")
   set columns=190
 
   set guifont=Inconsolata\ XL:h17,Inconsolata:h20,Monaco:h17
+
 else
   "dont load csapprox if we no gui support - silences an annoying warning
   let g:CSApprox_loaded = 1
