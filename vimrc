@@ -1,12 +1,57 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set shell=bash
+filetype off
 
-" TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
-" source ~/.vimrc.before if it exists.
-if filereadable(expand("~/.vimrc.before"))
-  source ~/.vimrc.before
-endif
+" =============== Vundle Initialization ===============
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" let Vundle manage Vundle (required)
+Bundle "gmarik/vundle"
+
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'vim-scripts/lastpos.vim'
+Bundle 'sjl/gundo.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tomtom/tlib_vim'
+Bundle 'skwp/vim-conque'
+Bundle 'gregsexton/gitv'
+Bundle 'mattn/webapi-vim'
+Bundle 'bling/vim-airline'
+Bundle 'vim-scripts/SearchComplete'
+Bundle 'ap/vim-css-color'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'airblade/vim-rooter'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'rizzatti/greper.vim'
+Bundle 'vim-scripts/TagHighlight'
+Bundle 'slim-template/vim-slim'
+Bundle 'aaronjensen/vim-sass-status'
+Bundle 'SirVer/ultisnips'
+Bundle 'slim-template/vim-slim'
+Bundle 'skwp/vim-colors-solarized'
+Bundle 'tpope/vim-rvm'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-vividchalk'
+
+Bundle 'lunaru/vim-less'
+
+Bundle 'uggedal/go-vim'
 
 " ================ General Config ====================
 
@@ -27,18 +72,11 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
-" Change leader to a comma because the backslash is too far away
-" That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all 
-" the plugins.
-let mapleader=","
+" ================ Search Settings  =================
 
-" =============== Vundle Initialization ===============
-" This loads all the plugins specified in ~/.vim/vundle.vim
-" Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundles.vim"))
-  source ~/.vim/vundles.vim
-endif
+set incsearch        "Find the next match as we type the search
+set hlsearch         "Hilight searches by default
+set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 
 " ================ Turn Off Swap Files ==============
 
@@ -64,6 +102,15 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+au BufRead,BufNewFile *.py  set ai sw=4 sts=4 et " Doc strs
+au BufRead,BufNewFile *.js  set ai sw=2 sts=2 et " Doc strs
+au BufRead,BufNewFile *.html set ai sw=2 sts=2 et " Doc strs
+au BufRead,BufNewFile *.json set ai sw=4 sts=4 et " Doc strs
+au BufNewFile *.py,*.pyw,*.c,*.h,*.json set fileformat=unix
+au! BufRead,BufNewFile *.json setfiletype json 
+au BufRead,BufNewFile *.go set filetype=go sw=2 tabstop=2 noet
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
 filetype plugin on
 filetype indent on
 
@@ -72,6 +119,10 @@ set list listchars=tab:\ \ ,trail:·
 
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
+
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 " ================ Folds ============================
 
@@ -93,6 +144,8 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=node_modules/**
+set wildignore+=public/assets/**
 
 "
 
@@ -102,7 +155,527 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
+" ================ Window ===========================
+" Long lines
+set wrap
+set textwidth=79
+set formatoptions=qn1
 
-if filereadable(expand("~/.vimrc.after"))
-  source ~/.vimrc.after
+" Disable the scrollbars (NERDTree)
+set guioptions-=r
+set guioptions-=L
+
+" Disable the macvim toolbar
+set guioptions-=T
+
+" ================ Diff =============================
+set diffopt+=iwhite
+
+" ================ Appearance =======================
+
+" Make it beautiful - colors and fonts
+if has("gui_running")
+  "tell the term has 256 colors
+  set t_Co=256
+
+  colorscheme solarized
+
+  " Show tab number (useful for Cmd-1, Cmd-2.. mapping)
+  " For some reason this doesn't work as a regular set command,
+  " (the numbers don't show up) so I made it a VimEnter event
+  autocmd VimEnter * set guitablabel=%N:\ %t\ %M
+
+  set lines=60
+  set columns=190
+
+  set colorcolumn=80
+  set cursorline
+  "set guifont=Inconsolata\ XL:h16,Inconsolata:h20,Monaco:h17
+  "set guifont=Inconsolata:h18,Monaco:h17
+  "set guifont=Source\ Code\ Pro\ Medium:h18
+  set guifont=Inconsolata\ for\ Powerline:h20,Monaco:h17
+else
+  "dont load csapprox if we no gui support - silences an annoying warning
+  let g:CSApprox_loaded = 1
 endif
+
+
+
+" ========================================
+" General vim sanity improvements
+" ========================================
+"
+"
+" Change leader to a comma because the backslash is too far away
+" That means all \x commands turn into ,x
+let mapleader=","
+
+" alias yw to yank the entire word 'yank inner word'
+" even if the cursor is halfway inside the word
+" FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
+nnoremap ,yw yiww
+
+" ,ow = 'overwrite word', replace a word with what's in the yank buffer
+" FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
+nnoremap ,ow "_diwhp
+
+"make Y consistent with C and D
+"nnoremap Y y$
+
+" ========================================
+" RSI Prevention - keyboard remaps
+" ========================================
+" Certain things we do every day as programmers stress
+" out our hands. For example, typing underscores and
+" dashes are very common, and in position that require
+" a lot of hand movement. Vim to the rescue
+"
+" Now using the middle finger of either hand you can type
+" underscores with apple-k or apple-d, and add Shift
+" to type dashes
+imap <silent> <D-k> _
+imap <silent> <D-d> _
+imap <silent> <D-K> -
+imap <silent> <D-D> -
+
+" ,# Surround a word with #{ruby interpolation}
+map ,# ysiw#
+vmap ,# c#{<C-R>"}<ESC>
+
+" ," Surround a word with "quotes"
+map ," ysiw"
+vmap ," c"<C-R>""<ESC>
+
+" ,' Surround a word with 'single quotes'
+map ,' ysiw'
+vmap ,' c'<C-R>"'<ESC>
+
+" ,) or ,( Surround a word with (parens)
+" The difference is in whether a space is put in
+map ,( ysiw(
+map ,) ysiw)
+vmap ,( c( <C-R>" )<ESC>
+vmap ,) c(<C-R>")<ESC>
+
+" ,[ Surround a word with [brackets]
+map ,] ysiw]
+map ,[ ysiw[
+vmap ,[ c[ <C-R>" ]<ESC>
+vmap ,] c[<C-R>"]<ESC>
+
+" ,{ Surround a word with {braces}
+map ,} ysiw}
+map ,{ ysiw{
+vmap ,} c{ <C-R>" }<ESC>
+vmap ,{ c{<C-R>"}<ESC>
+
+" gary bernhardt's hashrocket
+imap <c-l> <space>=><space>
+
+" Semicolon at end of line by typing ;;
+inoremap ;; <C-o>A;<esc>
+
+" Change inside various enclosures with Cmd-" and Cmd-'
+" The f makes it find the enclosure so you don't have
+" to be standing inside it
+nnoremap <D-'> f'ci'
+nnoremap <D-"> f"ci"
+nnoremap <D-(> f(ci(
+nnoremap <D-)> f)ci)
+nnoremap <D-[> f[ci[
+nnoremap <D-]> f]ci]
+
+"Go to last edit location with ,.
+nnoremap ,. '.
+
+"When typing a string, your quotes auto complete. Move past the quote
+"while still in insert mode by hitting Ctrl-a. Example:
+"
+" type 'foo<c-a>
+"
+" the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
+" put the cursor right after the quote
+imap <C-a> <esc>wa
+
+" ==============================
+" Window/Tab/Split Manipulation
+" ==============================
+" Move between split windows by using the four directions H, L, I, N
+" (note that  I use I and N instead of J and K because  J already does
+" line joins and K is mapped to GitGrep the current word
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-j> <C-w>j
+
+" Zoom in and out of current window with ,gz
+map <silent> ,gz <C-w>o
+
+
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
+
+" Resize windows with arrow keys
+nnoremap <D-Up> <C-w>+
+nnoremap <D-Down> <C-w>-
+nnoremap <D-Left> <C-w><
+nnoremap <D-Right>  <C-w>>
+
+" ============================
+" Shortcuts for everyday tasks
+" ============================
+
+" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
+" this is helpful to paste someone the path you're looking at
+nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
+nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
+
+"Clear current search highlight by double tapping //
+nmap <silent> // :nohlsearch<CR>
+
+"(v)im (c)ommand - execute current line as a vim command
+nmap <silent> ,vc yy:<C-f>p<C-c><CR>
+
+
+" Type ,hl to toggle highlighting on/off, and show current value.
+noremap ,hl :set hlsearch! hlsearch?<CR>
+
+" Apple-* Highlight all occurrences of current word (like '*' but without moving)
+" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
+nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+" These are very similar keys. Typing 'a will jump to the line in the current
+" file marked with ma. However, `a will jump to the line and column marked
+" with ma.  It’s more useful in any case I can imagine, but it’s located way
+" off in the corner of the keyboard. The best way to handle this is just to
+" swap them: http://items.sjbach.com/319/configuring-vim-right
+nnoremap ' `
+nnoremap ` '
+
+"(v)im (r)eload
+nmap <silent> ,vr :so %<CR>
+
+noremap ,ve :e ~/.vimrc<CR>
+
+noremap ,l :update<CR>
+
+noremap <Leader>j !python -m json.tool<CR>
+
+" ============================
+" Greeper
+" ============================
+nmap <silent> <leader>g :G<CR>
+
+" ============================
+" Dash
+" ============================
+nmap <silent> <leader>d <Plug>DashGlobalSearch
+
+
+" ============================
+" Abbreviations
+" ============================
+"Abbreviations, trigger by typing the abbreviation and hitting space
+
+abbr rlb Rails.logger.banner
+abbr rld Rails.logger.debug
+abbr pry! require 'pry'; binding.pry
+abbr cl! console.log( )<left><left>
+
+" Rspec Before
+abbr rbf before { }<left><left>
+
+
+
+" ============================
+" ConqueTerm
+" ============================
+let g:ConqueTerm_InsertOnEnter = 0
+let g:ConqueTerm_CWInsert = 1
+let g:ConqueTerm_Color = 2
+let g:ConqueTerm_ReadUnfocused = 1 " update conqueterm buffer while we're not looking (for running tests)
+
+" Open up a variety of commands in the ConqueTerm
+nmap <silent> <Leader>cc :execute 'ConqueTermSplit script/console --irb=pry'<CR>
+nmap <silent> <Leader>pp :execute 'ConqueTermSplit pry'<CR>
+
+let g:ConqueTerm_SendVisKey = '<Leader>e'
+
+" prevent auto insert mode, which is helpful when using conque
+" term for running tests
+"
+autocmd WinEnter * stopinsert
+
+" Cmd-Shift-R for RSpec
+nmap <silent> <D-R> :call RunRspecCurrentFileConque()<CR>
+" Cmd-Shift-L for RSpec Current Line
+nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
+" ,Cmd-R for Last conque command
+nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
+
+" Get the current highlight group. Useful for then remapping the color
+map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
+" Source current file Cmd-% (good for vim development)
+map <D-%> :so %<CR>
+
+" ,hp = html preview
+map <silent> ,hp :!open -a Safari %<CR><CR>
+
+" ============================
+" Tags
+" ============================
+set tags=tags;
+
+" ============================
+" CtrlP
+" ============================
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+
+" Default to filename searches - so that appctrl will find application
+" controller
+let g:ctrlp_by_filename = 0
+
+" We don't want to use Ctrl-p as the mapping because
+" it interferes with YankRing (paste, then hit ctrl-p)
+let g:ctrlp_map = ',t'
+nnoremap <silent> ,t :CtrlPMixed<CR>
+
+" Additional mapping for buffer search
+nnoremap <silent> ,b :CtrlPBuffer<cr>
+
+" Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
+" Open CtrlP starting from a particular path, making it much
+" more likely to find the correct thing first. mnemonic 'jump to [something]'
+map ,jm :CtrlP app/models<CR>
+map ,jc :CtrlP app/controllers<CR>
+map ,jv :CtrlP app/views<CR>
+map ,jh :CtrlP app/helpers<CR>
+map ,jl :CtrlP lib<CR>
+map ,jp :CtrlP public<CR>
+map ,js :CtrlP spec<CR>
+map ,jf :CtrlP fast_spec<CR>
+map ,jd :CtrlP db<CR>
+map ,jC :CtrlP config<CR>
+map ,jV :CtrlP vendor<CR>
+map ,jF :CtrlP factories<CR>
+map ,jT :CtrlP test<CR>
+
+"Cmd-Shift-(M)ethod - jump to a method (tag in current file)
+"Ctrl-m is not good - it overrides behavior of Enter
+nnoremap <silent> <D-M> :CloseSingleConque<CR>:CtrlPBufTag<CR>
+
+
+
+" ============================
+" Fugitive
+" ============================
+" For fugitive.git, dp means :diffput. Define dg to mean :diffget
+nnoremap <silent> ,dg :diffget<CR>
+nnoremap <silent> ,dp :diffput<CR>
+
+" ============================
+" Gist
+" ============================
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_get_multiplefile = 1
+
+" ============================
+" Gundo
+" ============================
+nmap ,u :GundoToggle<CR>
+" open on the right so as not to compete with the nerdtree
+let g:gundo_right = 1 
+" a little wider for wider screens
+let g:gundo_width = 60
+
+" ============================
+" NERDTree
+" ============================
+" Cmd-Shift-N for nerd tree
+nmap <D-N> :NERDTreeToggle<CR>
+nnoremap <silent> ,v :NERDTreeToggle<CR>
+
+" Make nerdtree look nice
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 30
+
+" ,q to toggle quickfix window (where you have stuff like GitGrep)
+" ,oq to open it back up (rare)
+nmap <silent> ,qc :CloseSingleConque<CR>:cclose<CR>
+nmap <silent> ,qo :copen<CR>
+
+" move up/down quickly by using Cmd-j, Cmd-k
+" which will move us around by functions
+nnoremap <silent> <D-j> }
+nnoremap <silent> <D-k> {
+autocmd FileType ruby map <buffer> <D-j> ]m
+autocmd FileType ruby map <buffer> <D-k> [m
+autocmd FileType rspec map <buffer> <D-j> }
+autocmd FileType rspec map <buffer> <D-k> {
+autocmd FileType javascript map <buffer> <D-k> }
+autocmd FileType javascript map <buffer> <D-j> {
+
+"Move back and forth through previous and next buffers
+"with ,z and ,x
+nnoremap <silent> ,z :bp<CR>
+nnoremap <silent> ,x :bn<CR>
+
+
+" ============================
+" Airline
+" ============================
+let g:airline_powerline_fonts=1
+
+
+" ============================
+" Rails
+" ============================
+" Better key maps for switching between controller and view
+nnoremap ,vv :Rview<cr>
+nnoremap ,cc :Rcontroller<cr>
+
+
+" ============================
+" Visual Paste
+" ============================
+" If you visually select something and hit paste
+" that thing gets yanked into your buffer. This
+" generally is annoying when you're copying one item
+" and repeatedly pasting it. This changes the paste
+" command in visual mode so that it doesn't overwrite
+" whatever is in your paste buffer.
+"
+vnoremap p "_dP
+
+
+
+" ============================
+" Surround
+" ============================
+" via: http://whynotwiki.com/Vim
+" Ruby
+" Use v or # to get a variable interpolation (inside of a string)}
+" ysiw#   Wrap the token under the cursor in #{}
+" v...s#  Wrap the selection in #{}
+let g:surround_113 = "#{\r}"   " v
+let g:surround_35  = "#{\r}"   " #
+
+" Select text in an ERb file with visual mode and then press s- or s=
+" Or yss- to do entire line.
+let g:surround_45 = "<% \r %>"    " -
+let g:surround_61 = "<%= \r %>"   " =
+
+
+" ============================
+" Soft Wrapping Text
+" ============================
+" http://vimcasts.org/episodes/soft-wrapping-text/
+function! SetupWrapping()
+  set wrap linebreak nolist
+  set showbreak=…
+endfunction
+
+" TODO: this should happen automatically for certain file types (e.g. markdown)
+command! -nargs=* Wrap :call SetupWrapping()<CR>
+
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-$> g$
+vmap <D-^> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-$> g$
+nmap <D-^> g^
+nmap <D-0> g^
+
+
+" ============================
+" Strip Trailing Whitespaces
+" ============================
+" via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
+nmap ,w :StripTrailingWhitespaces<CR>
+
+
+" ============================
+" Rspec
+" ============================
+" Does not work on pending 'blocks', only single lines
+"
+" Given:
+" it "foo bar" do
+"   pending("bla bla"
+"
+" Produce:
+" xit "foo bar" do
+"
+function! ChangePendingRspecToXit()
+  " Find the next occurrence of pending
+  while(search("pending(") > 0)
+    " Delete it
+    normal dd
+    " Search backwards to the it block
+    ?it\s
+    " add an 'x' to the 'it' to make it 'xit'
+    normal ix
+  endwhile
+endfunction
+
+nnoremap <silent> ,rxit :call ChangePendingRspecToXit()<cr>
+
+" insert a before { } block around a line
+nnoremap <silent> \bf ^ibefore { <esc>$a }
+
+function! CloseSingleConque()
+  try
+    if(exists("g:single_conque"))
+      exec "bdelete " . g:single_conque.buffer_name
+    endif
+  catch
+  endtry
+endfunction
+
+function! RunSingleConque(command)
+
+  " Close quickfix and location windows that are in the way
+  :cclose
+  :lclose
+
+  call CloseSingleConque()
+  " Keep track of the last command issued.
+  let g:last_conque_command = a:command
+  let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'], 1)
+endfunction
+
+function! RSpecFile()
+  execute "Dispatch zeus rspec " . expand("%p")
+endfunction
+map <leader>R :call RSpecFile() <CR>
+command! RSpecFile call RSpecFile()
+
+function! RSpecCurrent()
+  execute "Dispatch zeus rspec " . expand("%p") . ":" . line(".")
+endfunction
+map <leader>r :call RSpecCurrent() <CR>
+command! RSpecCurrent call RSpecCurrent()
