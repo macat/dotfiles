@@ -52,6 +52,7 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'lunaru/vim-less'
 
 Bundle 'uggedal/go-vim'
+Bundle 'nono/vim-handlebars'
 
 " ================ General Config ====================
 
@@ -374,22 +375,6 @@ nmap <silent> <leader>g :G<CR>
 " ============================
 nmap <silent> <leader>d <Plug>DashGlobalSearch
 
-
-" ============================
-" Abbreviations
-" ============================
-"Abbreviations, trigger by typing the abbreviation and hitting space
-
-abbr rlb Rails.logger.banner
-abbr rld Rails.logger.debug
-abbr pry! require 'pry'; binding.pry
-abbr cl! console.log( )<left><left>
-
-" Rspec Before
-abbr rbf before { }<left><left>
-
-
-
 " ============================
 " ConqueTerm
 " ============================
@@ -533,6 +518,7 @@ nnoremap <silent> ,x :bn<CR>
 " Airline
 " ============================
 let g:airline_powerline_fonts=1
+let g:airline_section_a = ''
 
 
 " ============================
@@ -669,13 +655,13 @@ function! RunSingleConque(command)
 endfunction
 
 function! RSpecFile()
-  execute "Dispatch zeus rspec " . expand("%p")
+  execute "Dispatch spring rspec " . expand("%p")
 endfunction
 map <leader>R :call RSpecFile() <CR>
 command! RSpecFile call RSpecFile()
 
 function! RSpecCurrent()
-  execute "Dispatch zeus rspec " . expand("%p") . ":" . line(".")
+  execute "Dispatch spring rspec " . expand("%p") . ":" . line(".")
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()
