@@ -48,11 +48,11 @@ Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-vividchalk'
+Bundle 'tpope/vim-markdown'
 
 Bundle 'lunaru/vim-less'
 
 Bundle 'uggedal/go-vim'
-Bundle 'nono/vim-handlebars'
 
 " ================ General Config ====================
 
