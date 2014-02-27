@@ -189,8 +189,9 @@ export GREP_COLOR='1;33'
 # ===================================================================
 # Load themes from yadr and from user's custom prompts (themes) in ~/.zsh.prompts
 autoload promptinit
-fpath=($HOME/.yadr/zsh/prezto-themes $HOME/.zsh.prompts $fpath)
+fpath=($HOME/.yadr/zsh/prezto-themes $fpath)
 promptinit
+prompt macat
 # ===================================================================
 # only init if installed.
 fasd_cache="$HOME/.fasd-init-bash"
