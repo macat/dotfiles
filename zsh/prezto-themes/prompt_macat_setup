@@ -18,11 +18,10 @@ function prompt_macat_precmd {
     git-info on
     git-info
   fi
+}
 
-  # Get ruby information
-  if (( $+functions[ruby-info] )); then
-    ruby-info
-  fi
+function prompt_rvm {
+  echo $(rvm-prompt v g)
 }
 
 function prompt_macat_setup {
@@ -50,7 +49,7 @@ function prompt_macat_setup {
   zstyle ':prezto:module:git:info:keys' format 'prompt' '- %b%D '
 
   # prompts
-  PROMPT='%F{blue}${ruby_info[version]}%F{cyan}%c%f ${git_info[prompt]}${editor_info[keymap]} '
+  PROMPT='$(prompt_rvm):%F{cyan}%c%f ${git_info[prompt]}${editor_info[keymap]} '
   RPROMPT=''
 }
 

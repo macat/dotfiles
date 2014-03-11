@@ -655,13 +655,13 @@ function! RunSingleConque(command)
 endfunction
 
 function! RSpecFile()
-  execute "Dispatch spring rspec " . expand("%p")
+  execute "Dispatch zeus rspec " . expand("%p")
 endfunction
 map <leader>R :call RSpecFile() <CR>
 command! RSpecFile call RSpecFile()
 
 function! RSpecCurrent()
-  execute "Dispatch spring rspec " . expand("%p") . ":" . line(".")
+  execute "Dispatch zeus rspec " . expand("%p") . ":" . line(".")
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()

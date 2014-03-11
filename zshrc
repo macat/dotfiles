@@ -30,18 +30,6 @@ export PATH=$PATH:$HOME/.yadr/bin:$HOME/.yadr/bin/yadr
 # Don't change. The following determines where YADR is installed.
 yadr=$HOME/.yadr
 
-# YADR support
-alias yav='yadr vim-add-plugin'
-alias ydv='yadr vim-delete-plugin'
-alias ylv='yadr vim-list-plugin'
-alias yup='yadr update-plugins'
-alias yip='yadr init-plugins'
-
-# PS
-alias psa="ps aux"
-alias psg="ps aux | grep "
-alias psr='ps aux | grep ruby'
-
 # Moving around
 alias cdb='cd -'
 
@@ -54,11 +42,8 @@ alias du='du -h -d 2'
 # show me files matching "ls grep"
 alias lsg='ll | grep'
 
-# Alias Editing
-alias ae='vim $yadr/zsh/aliases.zsh' #alias edit
-alias ar='source $yadr/zsh/aliases.zsh'  #alias reload
-
 # vim using
+export EDITOR=vim
 mvim --version > /dev/null 2>&1
 MACVIM_INSTALLED=$?
 if [ $MACVIM_INSTALLED -eq 0 ]; then
