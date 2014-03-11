@@ -1,0 +1,36 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+# Push
+bind l:ctrl;alt  push right bar-resize:screenSizeX*.3
+bind h:ctrl;alt  push left  bar-resize:screenSizeX*.7
+bind o:ctrl;alt  push right bar-resize:screenSizeX*.7
+bind u:ctrl;alt  push left  bar-resize:screenSizeX*.3
+bind j:ctrl;alt  push up    bar-resize:screenSizeY/2
+bind k:ctrl;alt  push down  bar-resize:screenSizeY/2
+
+# Throw Bindings
+bind j:ctrl;alt;cmd throw 0 resize
+bind k:ctrl;alt;cmd  throw 1  resize
+
+# Window Hints
+bind tab:cmd hint
+
+bind k:cmd;alt focus 'Google Chrome'
+bind j:cmd;alt focus 'MacVim'
+bind l:cmd;alt focus 'Terminal'
+bind h:cmd;alt focus 'HipChat'
+bind u:cmd;alt focus 'Firefox'
+bind i:cmd;alt focus 'Safari'
+bind p:cmd;alt focus 'Preview'
+bind o:cmd;alt focus 'Finder'
+bind f:cmd;alt focus 'Fidelia'
+bind m:cmd;alt focus 'Airmail'
+bind t:cmd;alt focus 'Twitter'
