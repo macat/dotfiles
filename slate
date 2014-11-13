@@ -8,29 +8,53 @@ config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
 
+layout my 'Google Chrome' push left  bar-resize:screenSizeX*.6
+layout my 'HipChat' push right bar-resize:screenSizeX*.4
+layout my '1Password 5' corner top-right resize:screenSizeX*.4;screenSizeY/2
+layout my 'Todoist' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
+layout my 'iTerm' throw 1 resize
+layout my 'Telegram' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
+
+default my resolutions:2560x1440
+default my resolutions:1920x1200
+
+layout small 'Google Chrome' throw 1 resize
+layout small 'HipChat' throw 1 resize
+layout small '1Password 5' throw 1 resize
+layout small 'Todoist' throw 1 resize
+layout small 'iTerm' throw 1 resize
+layout small 'Telegram' throw 1 resize
+
+default my resolutions:2560x1440
+
 # Push
-bind l:ctrl;alt  push right bar-resize:screenSizeX*.3
-bind h:ctrl;alt  push left  bar-resize:screenSizeX*.7
-bind o:ctrl;alt  push right bar-resize:screenSizeX*.7
-bind u:ctrl;alt  push left  bar-resize:screenSizeX*.3
+bind l:ctrl;alt  push right bar-resize:screenSizeX*.4
+bind h:ctrl;alt  push left  bar-resize:screenSizeX*.6
+bind o:ctrl;alt  push right bar-resize:screenSizeX*.6
+bind u:ctrl;alt  push left  bar-resize:screenSizeX*.4
 bind j:ctrl;alt  push up    bar-resize:screenSizeY/2
 bind k:ctrl;alt  push down  bar-resize:screenSizeY/2
+bind .:ctrl;alt  corner bottom-right resize:screenSizeX*.4;screenSizeY/2
+bind p:ctrl;alt  corner top-right resize:screenSizeX*.4;screenSizeY/2
 
 # Throw Bindings
 bind j:ctrl;alt;cmd throw 0 resize
-bind k:ctrl;alt;cmd  throw 1  resize
+bind k:ctrl;alt;cmd throw 1  resize
+bind m:ctrl;alt;cmd layout my
 
 # Window Hints
 bind tab:cmd hint
 
 bind k:cmd;alt focus 'Google Chrome'
 bind j:cmd;alt focus 'MacVim'
-bind l:cmd;alt focus 'Terminal'
+bind ,:cmd;alt focus 'Todoist'
+bind l:cmd;alt focus 'iTerm'
 bind h:cmd;alt focus 'HipChat'
 bind u:cmd;alt focus 'Firefox'
 bind i:cmd;alt focus 'Safari'
 bind p:cmd;alt focus 'Preview'
 bind o:cmd;alt focus 'Finder'
 bind f:cmd;alt focus 'Fidelia'
-bind m:cmd;alt focus 'Airmail'
-bind t:cmd;alt focus 'Twitter'
+bind m:cmd;alt focus 'Telegram'
+bind .:cmd;alt focus '1Password 5'
+
