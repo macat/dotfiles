@@ -8,24 +8,24 @@ config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
 
-layout my 'Google Chrome' push left  bar-resize:screenSizeX*.6
+layout my 'Firefox' push left  bar-resize:screenSizeX*.6
 layout my 'HipChat' push right bar-resize:screenSizeX*.4
 layout my '1Password 5' corner top-right resize:screenSizeX*.4;screenSizeY/2
 layout my 'Todoist' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
-layout my 'iTerm' throw 1 resize
+layout my 'Terminal' throw 1 resize
 layout my 'Telegram' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
 
 default my resolutions:2560x1440
 default my resolutions:1920x1200
 
-layout small 'Google Chrome' throw 1 resize
+layout small 'Firefox' throw 1 resize
 layout small 'HipChat' throw 1 resize
 layout small '1Password 5' throw 1 resize
 layout small 'Todoist' throw 1 resize
-layout small 'iTerm' throw 1 resize
+layout small 'Terminal' throw 1 resize
 layout small 'Telegram' throw 1 resize
 
-default my resolutions:2560x1440
+default small resolutions:1366x768
 
 # Push
 bind l:ctrl;alt  push right bar-resize:screenSizeX*.4
@@ -43,18 +43,20 @@ bind k:ctrl;alt;cmd throw 1  resize
 bind m:ctrl;alt;cmd layout my
 
 # Window Hints
-bind tab:cmd hint
+bind tab:ctrl hint
 
-bind k:cmd;alt focus 'Google Chrome'
+bind u:cmd;alt focus 'Google Chrome'
 bind j:cmd;alt focus 'MacVim'
+bind ;:cmd;alt focus 'Evernote'
 bind ,:cmd;alt focus 'Todoist'
-bind l:cmd;alt focus 'iTerm'
+bind l:cmd;alt focus 'Terminal'
 bind h:cmd;alt focus 'HipChat'
-bind u:cmd;alt focus 'Firefox'
-bind i:cmd;alt focus 'Safari'
+bind k:cmd;alt focus 'Firefox'
+bind t:cmd;alt focus 'Safari'
 bind p:cmd;alt focus 'Preview'
 bind o:cmd;alt focus 'Finder'
 bind f:cmd;alt focus 'Fidelia'
 bind m:cmd;alt focus 'Telegram'
+bind n:cmd;alt focus 'Airmail'
 bind .:cmd;alt focus '1Password 5'
 

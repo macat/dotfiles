@@ -18,6 +18,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-sleuth'
 Bundle 'vim-scripts/lastpos.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'mattn/gist-vim'
@@ -37,10 +40,10 @@ Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rizzatti/greper.vim'
 Bundle 'vim-scripts/TagHighlight'
-Bundle 'slim-template/vim-slim'
 Bundle 'aaronjensen/vim-sass-status'
 Bundle 'SirVer/ultisnips'
-Bundle 'slim-template/vim-slim'
+Bundle 'honza/vim-snippets'
+Bundle 'ingydotnet/yaml-vim'
 Bundle 'skwp/vim-colors-solarized'
 Bundle 'tpope/vim-rvm'
 Bundle 'digitaltoad/vim-jade'
@@ -52,7 +55,9 @@ Bundle 'tpope/vim-markdown'
 
 Bundle 'lunaru/vim-less'
 
-Bundle 'uggedal/go-vim'
+Bundle 'fatih/vim-go'
+
+Bundle 'ngmy/vim-rubocop'
 
 " ================ General Config ====================
 
@@ -104,13 +109,12 @@ set tabstop=2
 set expandtab
 
 au BufRead,BufNewFile *.py  set ai sw=4 sts=4 et " Doc strs
-au BufRead,BufNewFile *.js  set ai sw=2 sts=2 et " Doc strs
+"au BufRead,BufNewFile *.js  set ai sw=2 sts=2 et " Doc strs
 au BufRead,BufNewFile *.html set ai sw=2 sts=2 et " Doc strs
 au BufRead,BufNewFile *.json set ai sw=4 sts=4 et " Doc strs
 au BufNewFile *.py,*.pyw,*.c,*.h,*.json set fileformat=unix
 au! BufRead,BufNewFile *.json setfiletype json 
 au BufRead,BufNewFile *.go set filetype=go sw=2 tabstop=2 noet
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 filetype plugin on
 filetype indent on
@@ -221,7 +225,13 @@ nnoremap ,yw yiww
 nnoremap ,ow "_diwhp
 
 "make Y consistent with C and D
-"nnoremap Y y$
+nnoremap Y y$
+
+"insert a new-line after the current line by pressing Enter
+nmap <S-Enter> O<Esc>
+"Shift-Enter for inserting a line before the current line
+nmap <CR> o<Esc>
+
 
 " ========================================
 " RSI Prevention - keyboard remaps
@@ -409,6 +419,9 @@ map <D-%> :so %<CR>
 
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
+
+" GO
+au FileType go nmap <leader>c <Plug>(go-test)
 
 " ============================
 " Tags
@@ -655,13 +668,14 @@ function! RunSingleConque(command)
 endfunction
 
 function! RSpecFile()
-  execute "Dispatch zeus rspec " . expand("%p")
+  execute "Dispatch bin/rspec " . expand("%p")
+
 endfunction
 map <leader>R :call RSpecFile() <CR>
 command! RSpecFile call RSpecFile()
 
 function! RSpecCurrent()
-  execute "Dispatch zeus rspec " . expand("%p") . ":" . line(".")
+  execute "Dispatch bin/rspec " . expand("%p") . ":" . line(".")
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()
