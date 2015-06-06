@@ -20,10 +20,6 @@ function prompt_macat_precmd {
   fi
 }
 
-function prompt_rvm {
-  echo $(rvm-prompt v g)
-}
-
 function prompt_macat_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
@@ -40,16 +36,13 @@ function prompt_macat_setup {
   zstyle ':prezto:module:editor:info:keymap:primary' format "%B%F{green}$>%f%b"
   zstyle ':prezto:module:editor:info:keymap:alternate' format "%B%F{magenta}<#%f%b"
 
-  # ruby info (rvm, rbenv)
-  zstyle ':prezto:module:ruby:info:version' format '[ %v ]'
-
   # vcs
   zstyle ':prezto:module:git:info:branch' format '%F{yellow}%b%f'
   zstyle ':prezto:module:git:info:dirty' format '%B%F{red}!%f%b'
   zstyle ':prezto:module:git:info:keys' format 'prompt' '- %b%D '
 
   # prompts
-  PROMPT='$(prompt_rvm):%F{cyan}%c%f ${git_info[prompt]}${editor_info[keymap]} '
+  PROMPT='$():%F{cyan}%c%f ${git_info[prompt]}${editor_info[keymap]} '
   RPROMPT=''
 }
 

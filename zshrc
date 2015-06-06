@@ -176,7 +176,6 @@ export GREP_COLOR='1;33'
 autoload promptinit
 fpath=($HOME/.yadr/zsh/prezto-themes $fpath)
 promptinit
-prompt macat
 # ===================================================================
 # only init if installed.
 fasd_cache="$HOME/.fasd-init-bash"
