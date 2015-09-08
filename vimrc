@@ -1,7 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-set shell=bash
+set shell=zsh
 filetype off
 
 " =============== Vundle Initialization ===============
@@ -51,12 +51,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-markdown'
-
 Plugin 'lunaru/vim-less'
-
 Plugin 'fatih/vim-go'
-
-Plugin 'ngmy/vim-rubocop'
 
 " ================ General Config ====================
 
@@ -74,7 +70,6 @@ set autoread                    "Reload files changed outside vim
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-"turn on syntax highlighting
 syntax on
 
 " ================ Search Settings  =================
@@ -177,11 +172,6 @@ set diffopt+=iwhite
 
 " ================ Appearance =======================
 
-"tell the term has 256 colors
-set t_Co=256
-
-set lines=60
-set columns=190
 set colorcolumn=80
 set cursorline
 
@@ -192,11 +182,9 @@ if has("gui_running")
   "set guifont=Inconsolata:h18,Monaco:h17
   "set guifont=Source\ Code\ Pro\ Medium:h18
   set guifont=Inconsolata\ for\ Powerline:h20,Monaco:h17
-  colorscheme solarized
-else
-  "dont load csapprox if we no gui support - silences an annoying warning
-  let g:CSApprox_loaded = 1
 endif
+
+colorscheme solarized
 
 
 
@@ -461,8 +449,6 @@ map ,jT :CtrlP test<CR>
 "Ctrl-m is not good - it overrides behavior of Enter
 nnoremap <silent> <D-M> :CloseSingleConque<CR>:CtrlPBufTag<CR>
 
-
-
 " ============================
 " Fugitive
 " ============================
@@ -526,14 +512,6 @@ nnoremap <silent> ,x :bn<CR>
 " ============================
 let g:airline_powerline_fonts=1
 let g:airline_section_a = ''
-
-
-" ============================
-" Rails
-" ============================
-" Better key maps for switching between controller and view
-nnoremap ,vv :Rview<cr>
-nnoremap ,cc :Rcontroller<cr>
 
 
 " ============================

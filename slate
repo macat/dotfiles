@@ -46,7 +46,7 @@ bind m:ctrl;alt;cmd layout my
 bind tab:ctrl hint
 
 bind u:cmd;alt focus 'Google Chrome'
-bind j:cmd;alt focus 'MacVim'
+bind j:cmd;alt focus 'iTerm2'
 bind ;:cmd;alt focus 'Evernote'
 bind ,:cmd;alt focus 'Todoist'
 bind l:cmd;alt focus 'Terminal'
@@ -57,6 +57,6 @@ bind p:cmd;alt focus 'Preview'
 bind o:cmd;alt focus 'Finder'
 bind f:cmd;alt focus 'Fidelia'
 bind m:cmd;alt focus 'Telegram'
-bind n:cmd;alt focus 'Airmail'
+bind n:cmd;alt focus 'Slack'
 bind .:cmd;alt focus '1Password 5'
 
