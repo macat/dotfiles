@@ -29,9 +29,9 @@ if grep -q "/usr/local/bin/zsh" "/etc/shells"; then
   echo "zsh is already in the shells file"
 else
   sudo sh -c 'echo "\n/usr/local/bin/zsh" >> /etc/shells'
+  chsh -s /usr/local/bin/zsh
 fi
 
-chsh -s /usr/local/bin/zsh
 
 if [ ! -d $HOME/.yadr/vim/bundle/Vundle.vim ]; then
   git clone https://github.com/gmarik/vundle.git vim/bundle/Vundle.vim
