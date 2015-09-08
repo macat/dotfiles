@@ -6,7 +6,7 @@ brew update
 brew install zsh ctags git hub the_silver_searcher
 brew install caskroom/cask/brew-cask
 
-brew cask install android-studio firefox java seil slate the-unarchiver virtualbox
+brew cask install seil slate the-unarchiver virtualbox
 
 cp -f $HOME/.yadr/fonts/* $HOME/Library/Fonts
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
