@@ -42,7 +42,7 @@ Plugin 'vim-scripts/TagHighlight'
 Plugin 'aaronjensen/vim-sass-status'
 Plugin 'honza/vim-snippets'
 Plugin 'stephpy/vim-yaml'
-Plugin 'skwp/vim-colors-solarized'
+Plugin 'frankier/neovim-colors-solarized-truecolor-only'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-sensible'
@@ -182,7 +182,9 @@ if has("gui_running")
   set guifont=Inconsolata\ for\ Powerline:h20,Monaco:h17
 endif
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme solarized
+set background=light
 
 
 
