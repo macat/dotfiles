@@ -6,10 +6,10 @@ filetype off
 
 " =============== Vundle Initialization ===============
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle (required)
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 
 Plugin 'scrooloose/nerdtree'
@@ -51,6 +51,9 @@ Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-markdown'
 Plugin 'lunaru/vim-less'
 Plugin 'fatih/vim-go'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " ================ General Config ====================
 
