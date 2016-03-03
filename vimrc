@@ -14,21 +14,17 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sleuth'
 Plugin 'vim-scripts/lastpos.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tomtom/tlib_vim'
-Plugin 'skwp/vim-conque'
 Plugin 'gregsexton/gitv'
 Plugin 'mattn/webapi-vim'
 Plugin 'bling/vim-airline'
@@ -36,21 +32,21 @@ Plugin 'vim-scripts/SearchComplete'
 Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-rooter'
 Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/dash.vim'
 Plugin 'rizzatti/greper.vim'
 Plugin 'vim-scripts/TagHighlight'
 Plugin 'aaronjensen/vim-sass-status'
 Plugin 'honza/vim-snippets'
 Plugin 'stephpy/vim-yaml'
 Plugin 'frankier/neovim-colors-solarized-truecolor-only'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'tpope/vim-markdown'
-Plugin 'lunaru/vim-less'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 Plugin 'fatih/vim-go'
+Plugin 'djoshea/vim-autoread'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " ================ General Config ====================
 
@@ -402,8 +398,14 @@ map <D-%> :so %<CR>
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
 
-" GO
-au FileType go nmap <leader>c <Plug>(go-test)
+" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_snippet_engine = "neosnippet"
 
 " ============================
 " Tags
@@ -588,6 +590,12 @@ endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap ,w :StripTrailingWhitespaces<CR>
 
+" ============================
+" neosnippet
+" ============================
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " ============================
 " Rspec
@@ -640,14 +648,14 @@ function! RunSingleConque(command)
 endfunction
 
 function! RSpecFile()
-  execute "Dispatch bin/rspec " . expand("%p")
+  execute "Dispatch docker-compose run test rspec " . expand("%p")
 
 endfunction
 map <leader>R :call RSpecFile() <CR>
 command! RSpecFile call RSpecFile()
 
 function! RSpecCurrent()
-  execute "Dispatch bin/rspec " . expand("%p") . ":" . line(".")
+  execute "Dispatch docker-compose run test rspec " . expand("%p") . ":" . line(".")
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()

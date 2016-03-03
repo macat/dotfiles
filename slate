@@ -45,18 +45,16 @@ bind m:ctrl;alt;cmd layout my
 # Window Hints
 bind tab:ctrl hint
 
-bind u:cmd;alt focus 'Google Chrome'
 bind j:cmd;alt focus 'iTerm2'
-bind ;:cmd;alt focus 'Evernote'
+bind k:cmd;alt focus 'Google Chrome'
+bind i:cmd;alt focus 'FirefoxDeveloperEdition'
+bind l:cmd;alt focus 'Slack'
+bind ;:cmd;alt focus '1Password'
 bind ,:cmd;alt focus 'Todoist'
-bind l:cmd;alt focus 'Terminal'
 bind h:cmd;alt focus 'HipChat'
-bind k:cmd;alt focus 'Google Keep – notes and lists'
 bind t:cmd;alt focus 'Safari'
 bind p:cmd;alt focus 'Preview'
 bind o:cmd;alt focus 'Finder'
-bind f:cmd;alt focus 'Fidelia'
 bind m:cmd;alt focus 'Telegram'
-bind n:cmd;alt focus 'Slack'
-bind .:cmd;alt focus '1Password 5'
+bind u:cmd;alt focus 'Sublime Text'
 
