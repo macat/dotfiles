@@ -3,10 +3,12 @@
 git submodule update --init --recursive
 
 brew update
-brew install zsh ctags git hub the_silver_searcher
-brew install caskroom/cask/brew-cask
+brew install zsh ctags git hub the_silver_searcher awscli docker-machine docker-compose
+brew install neovim/neovim/neovim
+brew tap caskroom/cask
+brew tap caskroom/versions
 
-brew cask install seil slate the-unarchiver virtualbox
+brew cask install seil slate the-unarchiver virtualbox iterm2-beta
 
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
 ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
