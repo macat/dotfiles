@@ -41,6 +41,7 @@ Plugin 'frankier/neovim-colors-solarized-truecolor-only'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-dispatch'
+Plugin 'radenling/vim-dispatch-neovim'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'fatih/vim-go'
@@ -662,3 +663,8 @@ function! RSpecCurrent()
 endfunction
 map <leader>r :call RSpecCurrent() <CR>
 command! RSpecCurrent call RSpecCurrent()
+
+function! GoT()
+  execute "Dispatch docker-compose run app go test ./..."
+endfunction
+map <leader>g :call GoT() <CR>
