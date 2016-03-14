@@ -667,4 +667,9 @@ command! RSpecCurrent call RSpecCurrent()
 function! GoT()
   execute "Dispatch docker-compose run app go test ./..."
 endfunction
-map <leader>g :call GoT() <CR>
+map <leader>G :call GoT() <CR>
+
+function! GoTCurrent()
+  execute "Dispatch docker-compose run app go test ./" . expand("%:h")
+endfunction
+map <leader>g :call GoTCurrent() <CR>
