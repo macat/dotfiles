@@ -261,3 +261,7 @@ fi
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+# added by travis gem
+[ -f /Users/macat/.travis/travis.sh ] && source /Users/macat/.travis/travis.sh
+export PATH="/usr/local/sbin:$PATH"

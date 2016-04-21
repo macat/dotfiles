@@ -29,25 +29,18 @@ Plugin 'gregsexton/gitv'
 Plugin 'mattn/webapi-vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/SearchComplete'
-Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-rooter'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/greper.vim'
-Plugin 'vim-scripts/TagHighlight'
 Plugin 'aaronjensen/vim-sass-status'
-Plugin 'honza/vim-snippets'
 Plugin 'stephpy/vim-yaml'
 Plugin 'frankier/neovim-colors-solarized-truecolor-only'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-dispatch'
 Plugin 'radenling/vim-dispatch-neovim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
 Plugin 'fatih/vim-go'
 Plugin 'djoshea/vim-autoread'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -410,6 +403,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_snippet_engine = "neosnippet"
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
 " ============================
 " Tags
@@ -434,22 +429,8 @@ nnoremap <silent> ,t :CtrlPMixed<CR>
 " Additional mapping for buffer search
 nnoremap <silent> ,b :CtrlPBuffer<cr>
 
-" Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
-" Open CtrlP starting from a particular path, making it much
-" more likely to find the correct thing first. mnemonic 'jump to [something]'
-map ,jm :CtrlP app/models<CR>
-map ,jc :CtrlP app/controllers<CR>
-map ,jv :CtrlP app/views<CR>
-map ,jh :CtrlP app/helpers<CR>
-map ,jl :CtrlP lib<CR>
-map ,jp :CtrlP public<CR>
-map ,js :CtrlP spec<CR>
-map ,jf :CtrlP fast_spec<CR>
-map ,jd :CtrlP db<CR>
-map ,jC :CtrlP config<CR>
-map ,jV :CtrlP vendor<CR>
-map ,jF :CtrlP factories<CR>
-map ,jT :CtrlP test<CR>
+" Additional mapping for buffer search
+nnoremap <silent> ,d :GoDeclsDir<cr>
 
 "Cmd-Shift-(M)ethod - jump to a method (tag in current file)
 "Ctrl-m is not good - it overrides behavior of Enter
@@ -673,3 +654,6 @@ function! GoTCurrent()
   execute "Dispatch docker-compose run app go test ./" . expand("%:h")
 endfunction
 map <leader>g :call GoTCurrent() <CR>
+
+:vnoremap <leader>64d c<c-r>=system('base64 --decode', @")<cr><esc><Paste>
+:vnoremap <leader>64e c<c-r>=system('base64', @")<cr><esc><Paste>
