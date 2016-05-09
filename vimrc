@@ -655,5 +655,5 @@ function! GoTCurrent()
 endfunction
 map <leader>g :call GoTCurrent() <CR>
 
-:vnoremap <leader>64d c<c-r>=system('base64 --decode', @")<cr><esc><Paste>
-:vnoremap <leader>64e c<c-r>=system('base64', @")<cr><esc><Paste>
+vnoremap <leader>bd c<c-r>=system('base64 --decode', @")<cr><esc><Paste>
+vnoremap <leader>be c<c-r>=system('base64', @")<cr><esc><Paste>
