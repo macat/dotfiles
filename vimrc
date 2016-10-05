@@ -32,7 +32,6 @@ Plugin 'vim-scripts/SearchComplete'
 Plugin 'airblade/vim-rooter'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/greper.vim'
-Plugin 'aaronjensen/vim-sass-status'
 Plugin 'stephpy/vim-yaml'
 Plugin 'frankier/neovim-colors-solarized-truecolor-only'
 Plugin 'ervandew/supertab'
@@ -40,7 +39,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-dispatch'
 Plugin 'radenling/vim-dispatch-neovim'
 Plugin 'fatih/vim-go'
-Plugin 'djoshea/vim-autoread'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -114,6 +112,8 @@ let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+set ff=unix
+
 " ================ Folds ============================
 
 set foldmethod=indent   "fold based on indent
@@ -175,7 +175,7 @@ if has("gui_running")
   set guifont=Inconsolata\ for\ Powerline:h20,Monaco:h17
 endif
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 colorscheme solarized
 set background=light
 
@@ -657,3 +657,6 @@ map <leader>g :call GoTCurrent() <CR>
 
 vnoremap <leader>bd c<c-r>=system('base64 --decode', @")<cr><esc><Paste>
 vnoremap <leader>be c<c-r>=system('base64', @")<cr><esc><Paste>
+
+" Trigger autoread when changing buffers or coming back to vim.
+au FocusGained,BufEnter * :silent! !

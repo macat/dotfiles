@@ -9,20 +9,18 @@ config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
 
 layout my 'Firefox' push left  bar-resize:screenSizeX*.6
-layout my 'HipChat' push right bar-resize:screenSizeX*.4
-layout my '1Password 5' corner top-right resize:screenSizeX*.4;screenSizeY/2
-layout my 'Todoist' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
-layout my 'Terminal' throw 1 resize
+layout my 'Slack' push right bar-resize:screenSizeX*.4
+layout my '1Password' corner top-right resize:screenSizeX*.4;screenSizeY/2
+layout my 'iTerm2' throw 1 resize
 layout my 'Telegram' corner bottom-right resize:screenSizeX*.4;screenSizeY/2
 
 default my resolutions:2560x1440
 default my resolutions:1920x1200
 
 layout small 'Firefox' throw 1 resize
-layout small 'HipChat' throw 1 resize
-layout small '1Password 5' throw 1 resize
-layout small 'Todoist' throw 1 resize
-layout small 'Terminal' throw 1 resize
+layout small 'Slack' throw 1 resize
+layout small '1Password' throw 1 resize
+layout small 'iTerm2' throw 1 resize
 layout small 'Telegram' throw 1 resize
 
 default small resolutions:1366x768
@@ -47,14 +45,11 @@ bind tab:ctrl hint
 
 bind j:cmd;alt focus 'iTerm2'
 bind k:cmd;alt focus 'Google Chrome'
-bind i:cmd;alt focus 'FirefoxDeveloperEdition'
+bind i:cmd;alt focus 'Firefox'
 bind l:cmd;alt focus 'Slack'
 bind ;:cmd;alt focus '1Password'
-bind ,:cmd;alt focus 'Todoist'
-bind h:cmd;alt focus 'HipChat'
+bind ,:cmd;alt focus 'Paw'
 bind t:cmd;alt focus 'Safari'
 bind p:cmd;alt focus 'Preview'
 bind o:cmd;alt focus 'Finder'
 bind m:cmd;alt focus 'Telegram'
-bind u:cmd;alt focus 'Sublime Text'
-
