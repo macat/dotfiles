@@ -1,47 +1,50 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
 set shell=zsh
 filetype off
 
-" =============== Vundle Initialization ===============
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if &compatible
+  set nocompatible
+endif
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" let Vundle manage Vundle (required)
-Plugin 'VundleVim/Vundle.vim'
+call dein#begin('~/.cache/dein')
+call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-endwise')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-git')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-sleuth')
+call dein#add('vim-scripts/lastpos.vim')
+call dein#add('sjl/gundo.vim')
+call dein#add('mattn/gist-vim')
+call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('kien/ctrlp.vim')
+call dein#add('tomtom/tlib_vim')
+call dein#add('gregsexton/gitv')
+call dein#add('mattn/webapi-vim')
+call dein#add('bling/vim-airline')
+call dein#add('vim-scripts/SearchComplete')
+call dein#add('airblade/vim-rooter')
+call dein#add('rizzatti/funcoo.vim')
+call dein#add('rizzatti/greper.vim')
+call dein#add('stephpy/vim-yaml')
+call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+call dein#add('tpope/vim-sensible')
+call dein#add('tpope/vim-dispatch')
+call dein#add('radenling/vim-dispatch-neovim')
+call dein#add('fatih/vim-go')
+call dein#add('dhruvasagar/vim-table-mode')
+call dein#add('mustache/vim-mustache-handlebars')
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('zchee/deoplete-go', {'build': 'make'})
 
+call dein#end()
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sleuth'
-Plugin 'vim-scripts/lastpos.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'mattn/gist-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'gregsexton/gitv'
-Plugin 'mattn/webapi-vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/SearchComplete'
-Plugin 'airblade/vim-rooter'
-Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/greper.vim'
-Plugin 'stephpy/vim-yaml'
-Plugin 'frankier/neovim-colors-solarized-truecolor-only'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-dispatch'
-Plugin 'radenling/vim-dispatch-neovim'
-Plugin 'fatih/vim-go'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on
+syntax enable
 
 " ================ General Config ====================
 
@@ -347,6 +350,9 @@ nmap <silent> ,vr :so %<CR>
 noremap ,ve :e ~/.vimrc<CR>
 
 noremap ,l :update<CR>
+imap ,l <Esc>:update<CR>
+inoremap jj <ESC>
+
 
 noremap <Leader>j !python -m json.tool<CR>
 
@@ -660,3 +666,17 @@ vnoremap <leader>be c<c-r>=system('base64', @")<cr><esc><Paste>
 
 " Trigger autoread when changing buffers or coming back to vim.
 au FocusGained,BufEnter * :silent! !
+
+" NEOVIM
+set inccommand=split
+
+"Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+
+" deoplete-go settings
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+
