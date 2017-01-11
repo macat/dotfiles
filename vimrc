@@ -39,6 +39,7 @@ call dein#add('fatih/vim-go')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('mustache/vim-mustache-handlebars')
 call dein#add('Shougo/deoplete.nvim')
+
 call dein#add('zchee/deoplete-go', {'build': 'make'})
 
 call dein#end()
