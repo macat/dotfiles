@@ -3,12 +3,10 @@
 git submodule update --init --recursive
 
 brew update
-brew install zsh ctags git hub the_silver_searcher awscli docker-machine docker-compose
+brew install zsh ctags git hub the_silver_searcher awscli
 brew install neovim/neovim/neovim
 brew tap caskroom/cask
 brew tap caskroom/versions
-
-brew cask install seil slate the-unarchiver virtualbox iterm2-beta
 
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
 ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
@@ -40,7 +38,4 @@ fi
 if [ ! -d $HOME/.yadr/vim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
 fi
-
-
-
 

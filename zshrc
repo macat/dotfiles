@@ -43,13 +43,8 @@ alias du='du -h -d 2'
 alias lsg='ll | grep'
 
 # vim using
-export EDITOR=vim
+export EDITOR=nvim
 mvim --version > /dev/null 2>&1
-MACVIM_INSTALLED=$?
-if [ $MACVIM_INSTALLED -eq 0 ]; then
-  alias vim="mvim -v"
-  alias vi="mvim -v"
-fi
 
 # vimrc editing
 alias ve='vim ~/.vimrc'
