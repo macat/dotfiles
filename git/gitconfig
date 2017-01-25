@@ -133,3 +133,5 @@
 	required = true
 [user]
 	signingkey = B3DF683EA901310E
+[gpg]
+	program = gpg2
