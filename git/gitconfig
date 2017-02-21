@@ -105,7 +105,7 @@
 	default = current
 [core]
   autocrlf = false
-  editor = vim
+  editor = nvim
 	excludesfile = /Users/macat/.yadr/git/gitignore
 [advice]
   statusHints = false
@@ -128,9 +128,10 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [user]
 	signingkey = B3DF683EA901310E
 [gpg]

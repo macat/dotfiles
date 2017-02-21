@@ -30,3 +30,5 @@
 --regex-coffee=/^[ \t]*@([A-Za-z.]+)[ \t]+=[^->\n]*$/\1/f,field/
 --regex-coffee=/^[ \t]*@([A-Za-z.]+):[^->\n]*$/\1/f,static field/
 --regex-coffee=/^[ \t]*([A-Za-z.]+):[^->\n]*$/\1/f,field/
+
+--python-kinds=-iv

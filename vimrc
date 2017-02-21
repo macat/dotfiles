@@ -21,7 +21,6 @@ call dein#add('vim-scripts/lastpos.vim')
 call dein#add('sjl/gundo.vim')
 call dein#add('mattn/gist-vim')
 call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('kien/ctrlp.vim')
 call dein#add('tomtom/tlib_vim')
 call dein#add('gregsexton/gitv')
 call dein#add('mattn/webapi-vim')
@@ -29,7 +28,6 @@ call dein#add('bling/vim-airline')
 call dein#add('vim-scripts/SearchComplete')
 call dein#add('airblade/vim-rooter')
 call dein#add('rizzatti/funcoo.vim')
-call dein#add('rizzatti/greper.vim')
 call dein#add('stephpy/vim-yaml')
 call dein#add('frankier/neovim-colors-solarized-truecolor-only')
 call dein#add('tpope/vim-sensible')
@@ -39,6 +37,14 @@ call dein#add('fatih/vim-go')
 call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('mustache/vim-mustache-handlebars')
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('nvie/vim-flake8')
+call dein#add('zchee/deoplete-jedi')
+call dein#add('junegunn/fzf', {'build': './install --all' })
+call dein#add('junegunn/fzf.vim')
+call dein#add('w0rp/ale')
+
+" Python IDE
+call dein#add('google/yapf')
 
 call dein#add('zchee/deoplete-go', {'build': 'make'})
 
@@ -417,31 +423,28 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 " Tags
 " ============================
 set tags=tags;
+map <f12> :! ctags -R .<cr>
 
 " ============================
-" CtrlP
+" FZF
 " ============================
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
 
-" Default to filename searches - so that appctrl will find application
-" controller
-let g:ctrlp_by_filename = 0
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-" We don't want to use Ctrl-p as the mapping because
-" it interferes with YankRing (paste, then hit ctrl-p)
-let g:ctrlp_map = ',t'
-nnoremap <silent> ,t :CtrlPMixed<CR>
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
-" Additional mapping for buffer search
-nnoremap <silent> ,b :CtrlPBuffer<cr>
-
-" Additional mapping for buffer search
-nnoremap <silent> ,d :GoDeclsDir<cr>
-
-"Cmd-Shift-(M)ethod - jump to a method (tag in current file)
-"Ctrl-m is not good - it overrides behavior of Enter
-nnoremap <silent> <D-M> :CloseSingleConque<CR>:CtrlPBufTag<CR>
+nnoremap <silent> ,t :Files<CR>
+nnoremap <silent> ,b :Buffers<cr>
+nnoremap <silent> ,r :Tags<cr>
 
 " ============================
 " Fugitive
@@ -639,19 +642,6 @@ function! RunSingleConque(command)
   let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'], 1)
 endfunction
 
-function! RSpecFile()
-  execute "Dispatch docker-compose run test rspec " . expand("%p")
-
-endfunction
-map <leader>R :call RSpecFile() <CR>
-command! RSpecFile call RSpecFile()
-
-function! RSpecCurrent()
-  execute "Dispatch docker-compose run test rspec " . expand("%p") . ":" . line(".")
-endfunction
-map <leader>r :call RSpecCurrent() <CR>
-command! RSpecCurrent call RSpecCurrent()
-
 function! GoT()
   execute "Dispatch docker-compose run app go test ./..."
 endfunction
@@ -676,8 +666,17 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
 " deoplete-go settings
+set completeopt=longest,menuone,preview
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+" vim-flake8
+autocmd BufWritePost *.py call Flake8()
+
+" yapf
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
