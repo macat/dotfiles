@@ -7,48 +7,50 @@ if &compatible
   set nocompatible
 endif
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-endwise')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-git')
+  call dein#add('tpope/vim-repeat')
+  call dein#add('tpope/vim-sleuth')
+  call dein#add('vim-scripts/lastpos.vim')
+  call dein#add('sjl/gundo.vim')
+  call dein#add('mattn/gist-vim')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('tomtom/tlib_vim')
+  call dein#add('gregsexton/gitv')
+  call dein#add('mattn/webapi-vim')
+  call dein#add('bling/vim-airline')
+  call dein#add('vim-scripts/SearchComplete')
+  call dein#add('airblade/vim-rooter')
+  call dein#add('rizzatti/funcoo.vim')
+  call dein#add('stephpy/vim-yaml')
+  call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+  call dein#add('tpope/vim-sensible')
+  call dein#add('tpope/vim-dispatch')
+  call dein#add('radenling/vim-dispatch-neovim')
+  call dein#add('fatih/vim-go')
+  call dein#add('dhruvasagar/vim-table-mode')
+  call dein#add('mustache/vim-mustache-handlebars')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('nvie/vim-flake8')
+  call dein#add('zchee/deoplete-jedi')
+  call dein#add('junegunn/fzf', {'build': './install --all' })
+  call dein#add('junegunn/fzf.vim')
+  call dein#add('w0rp/ale')
 
-call dein#begin('~/.cache/dein')
-call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-endwise')
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-git')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-sleuth')
-call dein#add('vim-scripts/lastpos.vim')
-call dein#add('sjl/gundo.vim')
-call dein#add('mattn/gist-vim')
-call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('tomtom/tlib_vim')
-call dein#add('gregsexton/gitv')
-call dein#add('mattn/webapi-vim')
-call dein#add('bling/vim-airline')
-call dein#add('vim-scripts/SearchComplete')
-call dein#add('airblade/vim-rooter')
-call dein#add('rizzatti/funcoo.vim')
-call dein#add('stephpy/vim-yaml')
-call dein#add('frankier/neovim-colors-solarized-truecolor-only')
-call dein#add('tpope/vim-sensible')
-call dein#add('tpope/vim-dispatch')
-call dein#add('radenling/vim-dispatch-neovim')
-call dein#add('fatih/vim-go')
-call dein#add('dhruvasagar/vim-table-mode')
-call dein#add('mustache/vim-mustache-handlebars')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('nvie/vim-flake8')
-call dein#add('zchee/deoplete-jedi')
-call dein#add('junegunn/fzf', {'build': './install --all' })
-call dein#add('junegunn/fzf.vim')
-call dein#add('w0rp/ale')
+  " Python IDE
+  call dein#add('bsnux/vim-yapf')
 
-" Python IDE
-call dein#add('google/yapf')
+  call dein#add('zchee/deoplete-go', {'build': 'make'})
 
-call dein#add('zchee/deoplete-go', {'build': 'make'})
-
-call dein#end()
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
 syntax enable
@@ -665,18 +667,54 @@ set inccommand=split
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
+" Movement within 'ins-completion-menu'
+imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+
 " deoplete-go settings
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+
+let g:deoplete#sources#jedi#statement_length = 1
+let g:deoplete#sources#jedi#show_docstring = 0
+let g:deoplete#sources#jedi#short_types = 1
+
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+" let g:deoplete#ignore_sources.html = ['syntax']
+let g:deoplete#ignore_sources.python = ['syntax']
+
+" Let <Tab> also do completion
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
+
+" Close the documentation window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " vim-flake8
-autocmd BufWritePost *.py call Flake8()
+let g:flake8_show_in_gutter=0
+let g:flake8_show_in_file=1
 
 " yapf
 map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_sign_column_always = 1
+let g:ale_echo_cursor = 0
+let g:ale_lint_on_enter = 0
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
