@@ -1,1 +1,1 @@
-/home/macat/.vimrc
+/home/macat/.yadr/vimrc

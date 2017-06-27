@@ -30,21 +30,18 @@ if dein#load_state('~/.cache/dein')
   call dein#add('rizzatti/funcoo.vim')
   call dein#add('stephpy/vim-yaml')
   call dein#add('frankier/neovim-colors-solarized-truecolor-only')
-  call dein#add('tpope/vim-sensible')
   call dein#add('tpope/vim-dispatch')
   call dein#add('radenling/vim-dispatch-neovim')
   call dein#add('fatih/vim-go')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('mustache/vim-mustache-handlebars')
   call dein#add('Shougo/deoplete.nvim')
-  call dein#add('nvie/vim-flake8')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('w0rp/ale')
-
-  " Python IDE
-  call dein#add('bsnux/vim-yapf')
+  call dein#add('peterhoeg/vim-qml')
+  call dein#add('sbdchd/neoformat')
 
   call dein#add('zchee/deoplete-go', {'build': 'make'})
 
@@ -699,15 +696,8 @@ inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " vim-flake8
-let g:flake8_show_in_gutter=0
-let g:flake8_show_in_file=1
-
-" yapf
-map <C-Y> :call yapf#YAPF()<cr>
-imap <C-Y> <c-o>:call yapf#YAPF()<cr>
-
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 let g:ale_echo_cursor = 0
 let g:ale_lint_on_enter = 0
@@ -718,3 +708,19 @@ let g:ale_open_list = 1
 
 let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+
+
+" Autoformater
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre *.py :call ale#Lint()
+augroup END
+
+let g:neoformat_enabled_python = ['yapf']
