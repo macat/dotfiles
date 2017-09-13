@@ -2,15 +2,12 @@
 
 git submodule update --init --recursive
 
-brew update
-brew install zsh ctags git hub the_silver_searcher awscli
-brew install neovim/neovim/neovim
-brew tap caskroom/cask
-brew tap caskroom/versions
+sudo apt install zsh ctags awscli
 
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
 ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
 ln -nfs $HOME/.yadr/vim $HOME/.vim 
+ln -nfs $HOME/.yadr/vim $HOME/.config/nvim 
 ln -nfs $HOME/.yadr/vimrc $HOME/.vimrc
 ln -nfs $HOME/.yadr/zshrc $HOME/.zshrc
 ln -nfs $HOME/.yadr/zsh/prezto $HOME/.zprezto
@@ -27,15 +24,4 @@ if [ -f $HOME/Dropbox/scripts/.gitconfig.user ]; then
   ln -nfs $HOME/Dropbox/scripts/.gitconfig.user $HOME/.gitconfig.user
 fi
 
-if grep -q "/usr/local/bin/zsh" "/etc/shells"; then
-  echo "zsh is already in the shells file"
-else
-  sudo sh -c 'echo "\n/usr/local/bin/zsh" >> /etc/shells'
-  chsh -s /usr/local/bin/zsh
-fi
-
-
-if [ ! -d $HOME/.yadr/vim/bundle/Vundle.vim ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git vim/bundle/Vundle.vim
-fi
-
+chsh -s $(which zsh)

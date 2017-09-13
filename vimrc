@@ -30,8 +30,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('rizzatti/funcoo.vim')
   call dein#add('stephpy/vim-yaml')
   call dein#add('frankier/neovim-colors-solarized-truecolor-only')
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('radenling/vim-dispatch-neovim')
   call dein#add('fatih/vim-go')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('mustache/vim-mustache-handlebars')
@@ -39,11 +37,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
-  call dein#add('w0rp/ale')
   call dein#add('peterhoeg/vim-qml')
   call dein#add('sbdchd/neoformat')
-
-  call dein#add('zchee/deoplete-go', {'build': 'make'})
 
   call dein#end()
   call dein#save_state()
@@ -724,3 +719,5 @@ augroup fmt
 augroup END
 
 let g:neoformat_enabled_python = ['yapf']
+
+set grepprg=rg\ --vimgrep
