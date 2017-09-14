@@ -1,9 +1,10 @@
 #!/bin/sh
 
 git submodule update --init --recursive
-
-sudo apt install zsh ctags awscli
-
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install -y zsh ctags awscli neovim python3-pip curl wget
+ 
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
 ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
 ln -nfs $HOME/.yadr/vim $HOME/.vim 
