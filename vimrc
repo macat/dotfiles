@@ -715,7 +715,7 @@ let g:ale_linters = {
 augroup fmt
   autocmd!
   autocmd BufWritePre * Neoformat
-  autocmd BufWritePre *.py :call ale#Lint()
+"  autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
 let g:neoformat_enabled_python = ['yapf']
