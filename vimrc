@@ -39,6 +39,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junegunn/fzf.vim')
   call dein#add('peterhoeg/vim-qml')
   call dein#add('w0rp/ale')
+  call dein#add('sbdchd/neoformat')
 
   call dein#end()
   call dein#save_state()
@@ -707,9 +708,16 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-\   'python': ['yapf', 'flake8', 'isort'],
+\   'python': ['flake8', 'isort'],
 \}
 
 let g:neoformat_enabled_python = ['yapf']
+
+" Autoformater
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre *.py :call ale#Lint()
+augroup END
 
 set grepprg=rg\ --vimgrep
