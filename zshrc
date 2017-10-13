@@ -1,10 +1,3 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # ===================================================================
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -45,9 +38,6 @@ alias lsg='ll | grep'
 # vim using
 export EDITOR=nvim
 mvim --version > /dev/null 2>&1
-
-# vimrc editing
-alias ve='vim ~/.vimrc'
 
 # Git Aliases
 alias gs='git status'
@@ -109,58 +99,13 @@ alias gbb='git bisect bad'
 # Common shell functions
 alias less='less -r'
 alias tf='tail -f'
-alias l='less'
 alias lh='ls -alt | head' # see the last modified files
 alias screen='TERM=screen screen'
 alias cl='clear'
 
-# Zippin
-alias gz='tar -zcvf'
-
-# Ruby
-alias c='rails c' # Rails 3
-alias co='script/console --irb=pry' # Rails 2
-alias ts='thin start'
-alias ms='mongrel_rails start'
-alias tfdl='tail -f log/development.log'
-alias tftl='tail -f log/test.log'
-
 # Vim/ctags "mctags = make ctags", using the ruby specific version
 # to save some time
 alias mctags=~/.bin/run_tags.rb #'/opt/local/bin/ctags -Rf ./tags *'
-
-alias ka9='killall -9'
-alias k9='kill -9'
-
-# Gem install
-alias sgi='sudo gem install --no-ri --no-rdoc'
-
-# TODOS
-# This uses NValt (NotationalVelocity alt fork) - http://brettterpstra.com/project/nvalt/
-# to find the note called 'todo'
-alias todo='open nvalt://find/todo'
-
-# Forward port 80 to 3000
-alias portforward='sudo ipfw add 1000 forward 127.0.0.1,3000 ip from any to any 80 in'
-
-alias rdm='rake db:migrate'
-alias rdmr='rake db:migrate:redo'
-
-# Zeus
-alias zs='zeus server'
-alias zc='zeus console'
-
-# Rspec
-alias rs='rspec spec'
-
-# Sprintly - https://github.com/nextbigsoundinc/Sprintly-GitHub
-alias sp='sprintly'
-# spb = sprintly branch - create a branch automatically based on the bug you're working on
-alias spb="git checkout -b \`sp | tail -2 | grep '#' | sed 's/^ //' | sed 's/[^A-Za-z0-9 ]//g' | sed 's/ /-/g' | cut -d"-" -f1,2,3,4,5\`"
-
-# ===================================================================
-# Colors
-export GREP_COLOR='1;33'
 
 # ===================================================================
 # Load themes from yadr and from user's custom prompts (themes) in ~/.zsh.prompts
@@ -172,13 +117,6 @@ promptinit
 __git_files () {
     _wanted files expl 'local files' _files
 }
-# ===================================================================
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
-bindkey -v                                          # Use vi key bindings
-bindkey '^r' history-incremental-search-backward    # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-
 # emacs style
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
@@ -217,12 +155,6 @@ alias -g L="| less"
 alias -g N="| /dev/null"
 alias -g S='| sort'
 alias -g G='| grep' # now you can do: ls foo G something
-# Functions
-#
-# (f)ind by (n)ame
-# usage: fn foo 
-# to find all files containing 'foo' in the name
-function fn() { ls **/*$1* }
 
 # ===================================================================
 # Load any custom after code
