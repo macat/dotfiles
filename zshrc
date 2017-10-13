@@ -112,7 +112,6 @@ alias mctags=~/.bin/run_tags.rb #'/opt/local/bin/ctags -Rf ./tags *'
 autoload promptinit
 fpath=($HOME/.yadr/zsh/prezto-themes $fpath)
 promptinit
-
 # Makes git auto completion faster favouring for local completions
 __git_files () {
     _wanted files expl 'local files' _files
