@@ -32,3 +32,6 @@
 --regex-coffee=/^[ \t]*([A-Za-z.]+):[^->\n]*$/\1/f,field/
 
 --python-kinds=-iv
+
+ --c++-kinds=+p --fields=+iaS --extra=+q
+ --c++-kinds=fp

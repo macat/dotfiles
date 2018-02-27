@@ -15,6 +15,7 @@ ln -nfs $HOME/.yadr/vimrc $HOME/.vimrc
 ln -nfs $HOME/.yadr/zshrc $HOME/.zshrc
 ln -nfs $HOME/.yadr/zsh/prezto $HOME/.zprezto
 ln -nfs $HOME/.yadr/zsh/prezto-override/zpreztorc $HOME/.zpreztorc
+ln -nfs $HOME/.yadr/tmux/tmux.conf $HOME/.tmux.conf
 
 
 if [ -d $HOME/Dropbox/scripts/.zsh.after ]; then

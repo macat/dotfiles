@@ -29,7 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('airblade/vim-rooter')
   call dein#add('rizzatti/funcoo.vim')
   call dein#add('stephpy/vim-yaml')
-  call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+  call dein#add('icymind/NeoSolarized')
   call dein#add('fatih/vim-go')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('mustache/vim-mustache-handlebars')
@@ -183,7 +183,7 @@ if has("gui_running")
 endif
 
 set termguicolors
-colorscheme solarized
+colorscheme NeoSolarized
 set background=light
 
 
@@ -506,6 +506,7 @@ nnoremap <silent> ,x :bn<CR>
 " ============================
 let g:airline_powerline_fonts=1
 let g:airline_section_a = ''
+let g:airline#extensions#ale#enabled = 1
 
 
 " ============================
@@ -702,24 +703,32 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 
 let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 let g:ale_linters = {
 \   'python': ['flake8', 'isort'],
+\   'c': ['clang'],
 \}
 
 let g:neoformat_enabled_python = ['yapf']
+let g:neoformat_enabled_yaml = []
+let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_terraform = ['terraform']
 
 " Autoformater
 augroup fmt
   autocmd!
   autocmd BufWritePre * Neoformat
-"  autocmd BufWritePre *.py :call ale#Lint()
+  autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
 set grepprg=rg\ --vimgrep

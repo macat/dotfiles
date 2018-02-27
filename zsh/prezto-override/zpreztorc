@@ -29,7 +29,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'syntax-highlighting' \
   'autosuggestions' \
-  'prompt'
+  'prompt' \
+  'tmux'
 
 #
 # Editor
@@ -42,3 +43,6 @@ zstyle ':prezto:module:editor' keymap 'emacs'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 zstyle ':prezto:module:prompt' theme 'minimal'
+
+# Auto start a session when Zsh is launched.
+zstyle ':prezto:module:tmux:auto-start' local 'yes'

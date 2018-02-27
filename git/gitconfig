@@ -106,7 +106,7 @@
 [core]
   autocrlf = false
   editor = nvim
-	excludesfile = /home/macat/.yadr/git/gitignore
+  excludesfile = /home/att/.yadr/git/gitignore
 [advice]
   statusHints = false
 [diff]
