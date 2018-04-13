@@ -1,0 +1,10 @@
+{
+    "classes": {
+        "firefox": "ff",
+        "gnome-terminal": "term",
+        "google-chrome": "chrome",
+        "telegram-desktop": "telegram"
+    },
+    "instances": {
+    }
+}
