@@ -37,11 +37,17 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('zchee/deoplete-jedi')
+  call dein#add('tweekmonster/deoplete-clang2')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('peterhoeg/vim-qml')
   call dein#add('w0rp/ale')
   call dein#add('sbdchd/neoformat')
+  call dein#add('zchee/vim-flatbuffers')
+  call dein#add('octol/vim-cpp-enhanced-highlight')
+  call dein#add('sakhnik/nvim-gdb')
+
+
 
   call dein#end()
   call dein#save_state()
@@ -703,7 +709,7 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
+let g:ale_open_list = 1
 
 let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
@@ -717,6 +723,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \   'python': ['flake8', 'isort'],
 \   'c': ['clang'],
+\   'cpp': ['clang'],
 \}
 
 let g:neoformat_enabled_python = ['yapf']
@@ -731,7 +738,21 @@ augroup fmt
   autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --follow --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
 set grepprg=rg\ --vimgrep
+nnoremap <Leader>K :Find <C-R><C-W><CR>
 
 
 " Plugin key-mappings.
