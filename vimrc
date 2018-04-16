@@ -710,16 +710,19 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-\   'python': ['flake8', 'isort'],
+\   'python': ['flake8', 'mypy', 'isort'],
 \}
 
 let g:neoformat_enabled_python = ['yapf']
+
+let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
+
 
 " Autoformater
 augroup fmt
   autocmd!
   autocmd BufWritePre * Neoformat
-"  autocmd BufWritePre *.py :call ale#Lint()
+  autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
 set grepprg=rg\ --vimgrep
