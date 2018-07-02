@@ -718,7 +718,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
-\   'python': ['flake8', 'isort'],
+\   'python': ['flake8', 'mypy', 'isort'],
 \   'c': ['clang'],
 \   'cpp': ['clang'],
 \}
@@ -727,6 +727,9 @@ let g:neoformat_enabled_python = ['yapf']
 let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_terraform = ['terraform']
+
+let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
+
 
 " Autoformater
 augroup fmt
