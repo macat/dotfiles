@@ -12,7 +12,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('tpope/vim-surround')
-  call dein#add('tpope/vim-endwise')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-git')
   call dein#add('tpope/vim-repeat')
@@ -22,7 +21,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mattn/gist-vim')
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('tomtom/tlib_vim')
-  call dein#add('gregsexton/gitv')
   call dein#add('mattn/webapi-vim')
   call dein#add('bling/vim-airline')
   call dein#add('vim-scripts/SearchComplete')
@@ -40,13 +38,12 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tweekmonster/deoplete-clang2')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
-  call dein#add('peterhoeg/vim-qml')
   call dein#add('w0rp/ale')
   call dein#add('sbdchd/neoformat')
   call dein#add('zchee/vim-flatbuffers')
   call dein#add('octol/vim-cpp-enhanced-highlight')
   call dein#add('sakhnik/nvim-gdb')
-
+  call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
 
 
   call dein#end()
@@ -734,7 +731,7 @@ let g:neoformat_enabled_terraform = ['terraform']
 " Autoformater
 augroup fmt
   autocmd!
-  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre * :Neoformat
   autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
@@ -773,5 +770,19 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=0
 endif
+
+" LSP
+let g:LanguageClient_rootMarkers = ['.root']
+
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['go-langserver'],
+    \ 'python': ['pyls'],
+    \ 'cpp': ['/home/att/w/cquery/build/system/bin/cquery'],
+    \ 'c': ['/home/att/w/cquery/build/system/bin/cquery'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
