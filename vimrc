@@ -43,9 +43,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('zchee/vim-flatbuffers')
   call dein#add('octol/vim-cpp-enhanced-highlight')
   call dein#add('sakhnik/nvim-gdb')
-  call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
-
-
+  call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('pdavydov108/vim-lsp-cquery')
   call dein#end()
   call dein#save_state()
 endif
@@ -697,6 +697,7 @@ inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
 " Close the documentation window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+
 " vim-flake8
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -776,16 +777,15 @@ if has('conceal')
   set conceallevel=0
 endif
 
-" LSP
-let g:LanguageClient_rootMarkers = ['.root']
+if executable('/home/att/w/cquery/build/cquery')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'cquery',
+      \ 'cmd': {server_info->['/home/att/w/cquery/build/cquery']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+endif
 
-let g:LanguageClient_serverCommands = {
-    \ 'go': ['go-langserver'],
-    \ 'python': ['pyls'],
-    \ 'cpp': ['/home/att/w/cquery/build/system/bin/cquery'],
-    \ 'c': ['/home/att/w/cquery/build/system/bin/cquery'],
-    \ }
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
