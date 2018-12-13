@@ -1,11 +1,6 @@
 #!/bin/sh
 
 git submodule update --init --recursive
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install -y zsh ctags awscli neovim python3-pip curl wget
- 
-sudo pip3 install isort flake8
 
 ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
 ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
@@ -16,6 +11,7 @@ ln -nfs $HOME/.yadr/zshrc $HOME/.zshrc
 ln -nfs $HOME/.yadr/zsh/prezto $HOME/.zprezto
 ln -nfs $HOME/.yadr/zsh/prezto-override/zpreztorc $HOME/.zpreztorc
 ln -nfs $HOME/.yadr/tmux/tmux.conf $HOME/.tmux.conf
+ln -nfs $HOME/.yadr/hammerspoon $HOME/.hammerspoon
 
 
 if [ -d $HOME/Dropbox/scripts/.zsh.after ]; then
@@ -29,3 +25,4 @@ if [ -f $HOME/Dropbox/scripts/.gitconfig.user ]; then
 fi
 
 chsh -s $(which zsh)
+
