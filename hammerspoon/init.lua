@@ -36,6 +36,9 @@ end)
 hs.hotkey.bind({"alt", "cmd"}, "m", function()
   hs.application.launchOrFocus("Telegram")
 end)
+hs.hotkey.bind({"alt", "cmd"}, "i", function()
+  hs.application.launchOrFocus("Windows 10")
+end)
 
 
 hs.loadSpoon("ReloadConfiguration")
