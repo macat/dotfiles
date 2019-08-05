@@ -100,12 +100,7 @@ alias gbb='git bisect bad'
 alias less='less -r'
 alias tf='tail -f'
 alias lh='ls -alt | head' # see the last modified files
-alias screen='TERM=screen screen'
 alias cl='clear'
-
-# Vim/ctags "mctags = make ctags", using the ruby specific version
-# to save some time
-alias mctags=~/.bin/run_tags.rb #'/opt/local/bin/ctags -Rf ./tags *'
 
 # ===================================================================
 # Load themes from yadr and from user's custom prompts (themes) in ~/.zsh.prompts

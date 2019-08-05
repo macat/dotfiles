@@ -32,3 +32,8 @@ Session.vim
 .sass-cache
 
 .vs
+
+.ccls-cache
+
+.mypy_cache
+.ccls

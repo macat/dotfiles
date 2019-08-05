@@ -14,6 +14,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lastpos.vim'
 Plug 'sjl/gundo.vim'
 Plug 'mattn/gist-vim'
@@ -28,8 +29,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go'
 Plug 'peterhoeg/vim-qml'
 
-Plug 'icymind/NeoSolarized'
-Plug 'dhruvasagar/vim-table-mode'
+"Plug 'icymind/NeoSolarized'
+Plug 'morhetz/gruvbox'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -37,6 +38,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'roxma/nvim-yarp'
 Plug 'sgur/vim-editorconfig'
 Plug 'leafgarland/typescript-vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -60,6 +71,9 @@ set autoread                    "Reload files changed outside vim
 set hidden
 
 syntax on
+
+" mouse scrolling
+set mouse=a
 
 " ================ Search Settings  =================
 
@@ -166,8 +180,9 @@ if has("gui_running")
 endif
 
 set termguicolors
-colorscheme NeoSolarized
+colorscheme gruvbox
 set background=light
+let g:gruvbox_contrast_light='soft'
 
 
 
@@ -211,16 +226,6 @@ vmap ,{ c{<C-R>"}<ESC>
 " Semicolon at end of line by typing ;;
 inoremap ;; <C-o>A;<esc>
 
-" Window/Tab/Split Manipulation
-" =============================
-" Move between split windows by using the four directions H, L, I, N
-" (note that  I use I and N instead of J and K because  J already does
-" line joins and K is mapped to GitGrep the current word
-nnoremap <silent> <C-h> <C-w>h
-nnoremap <silent> <C-l> <C-w>l
-nnoremap <silent> <C-k> <C-w>k
-nnoremap <silent> <C-j> <C-w>j
-
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
 " this to vv and ss
@@ -232,8 +237,8 @@ nnoremap <silent> ss <C-w>s
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
-nnoremap <silent> ,cf :let @* = expand("%:~")<CR>
-nnoremap <silent> ,cn :let @* = expand("%:t")<CR>
+nnoremap <silent> <leader>yp :let @* = expand("%:~")<CR>
+nnoremap <silent> <leader>yn :let @* = expand("%:t")<CR>
 
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>
@@ -277,12 +282,8 @@ endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-nnoremap <silent> ,t :Files<CR>
-nnoremap <silent> ,b :Buffers<cr>
+nmap <silent> <leader>t :Files<cr>
+nmap <silent> <leader>b :Buffers<cr>
 
 " Fugitive
 " ========
@@ -337,7 +338,7 @@ let g:NERDToggleCheckAllLines = 1
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
 " ,oq to open it back up (rare)
-nmap <silent> ,qc :CloseSingleConque<CR>:cclose<CR>
+nmap <silent> ,qc :cclose<CR>
 nmap <silent> ,qo :copen<CR>
 nmap <silent> ,j :cn<CR>
 nmap <silent> ,k :cp<CR>
@@ -438,7 +439,7 @@ let g:ale_lint_on_enter = 0
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 
 let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
@@ -497,47 +498,6 @@ if has('conceal')
   set conceallevel=0
 endif
 
-" NCM2
-" ====
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
-
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" LSP
-" ===
-
-if executable('pyls')
-  au User lsp_setup call lsp#register_server({
-      \ 'name': 'pyls',
-      \ 'cmd': {server_info->['pyls']},
-      \ 'whitelist': ['python'],
-      \ })
-endif
-
-nnoremap <leader>fd :LspDefinition<CR>
-
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
-
-
 " Editorconfig
 " ============
 
@@ -547,3 +507,67 @@ let g:editorconfig_blacklist = {
 
 let g:terraform_align=1
 
+" ALE
+" ===
+
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_column_always = 1
+let g:ale_echo_cursor = 0
+let g:ale_lint_on_enter = 0
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+let g:ale_linters = {
+\   'python': ['flake8', 'mypy'],
+\   'c': [],
+\   'cpp': [],
+\   'cmake': ['cmakelint'],
+\   'typescript': ['tslint'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'sh': ['shellcheck']
+\}
+
+let g:ale_fixers = {
+\   'python': ['yapf', 'isort'],
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
+\   'json': ['jq'],
+\   'cmake': ['cmakeformat'],
+\   'typescript': ['tslint'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'terraform': ['terraform'],
+\   'html': ['prettier'],
+\}
+
+let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
+
+let g:ale_typescript_tslint_use_global = 1
+let g:ale_typescript_tslint_executable = 'tslint'
+let g:ale_typescript_tslint_config_path = '~/.tslint.json'
+
+" LSP
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'cpp': ['clangd', '-background-index', '-log=verbose', '-compile-commands-dir=/Users/att/w/builds/cs-debug', '-pch-storage=memory',],
+    \ }
+
+let g:LanguageClient_diagnosticsList = "Location"
+
+" Or map each action separately
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap gt :call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap gr :call LanguageClient#textDocument_references()<CR>

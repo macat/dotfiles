@@ -45,6 +45,9 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 hs.loadSpoon("ClipboardTool")
+spoon.ClipboardTool.hist_size = 5
+spoon.ClipboardTool.max_entry_size = 99999
+spoon.ClipboardTool.max_size = false
 spoon.ClipboardTool:start()
 
 
