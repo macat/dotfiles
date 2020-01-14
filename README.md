@@ -7,8 +7,8 @@ Installation
 ------------
 
 ```bash
-git clone git@github.com:macat/dotfiles.git ~/.yadr
-cd ~/.yadr
+git clone git@github.com:macat/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ./install.sh
 ```
 

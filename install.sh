@@ -2,27 +2,11 @@
 
 git submodule update --init --recursive
 
-ln -nfs $HOME/.yadr/git/gitconfig $HOME/.gitconfig
-ln -nfs $HOME/.yadr/ctags $HOME/.ctags 
-ln -nfs $HOME/.yadr/vim $HOME/.vim 
-ln -nfs $HOME/.yadr/vim $HOME/.config/nvim 
-ln -nfs $HOME/.yadr/vimrc $HOME/.vimrc
-ln -nfs $HOME/.yadr/zshrc $HOME/.zshrc
-ln -nfs $HOME/.yadr/zsh/prezto $HOME/.zprezto
-ln -nfs $HOME/.yadr/zsh/prezto-override/zpreztorc $HOME/.zpreztorc
-ln -nfs $HOME/.yadr/tmux/tmux.conf $HOME/.tmux.conf
-ln -nfs $HOME/.yadr/hammerspoon $HOME/.hammerspoon
-
-
-if [ -d $HOME/Dropbox/scripts/.zsh.after ]; then
-  ln -nfs $HOME/Dropbox/scripts/.zsh.after $HOME/.zsh.after
-fi
-if [ -d $HOME/Dropbox/scripts/.zsh.before ]; then
-  ln -nfs $HOME/Dropbox/scripts/.zsh.before $HOME/.zsh.before
-fi
-if [ -f $HOME/Dropbox/scripts/.gitconfig.user ]; then
-  ln -nfs $HOME/Dropbox/scripts/.gitconfig.user $HOME/.gitconfig.user
-fi
-
-chsh -s $(which zsh)
-
+ln -nfs $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
+ln -nfs $HOME/.dotfiles/vim $HOME/.vim 
+ln -nfs $HOME/.dotfiles/vim $HOME/.config/nvim 
+ln -nfs $HOME/.dotfiles/vimrc $HOME/.vimrc
+ln -nfs $HOME/.dotfiles/zshrc $HOME/.zshrc
+ln -nfs $HOME/.dotfiles/zsh/prezto $HOME/.zprezto
+ln -nfs $HOME/.dotfiles/zsh/prezto-override/zpreztorc $HOME/.zpreztorc
+ln -nfs $HOME/.dotfiles/tmux/tmux.conf $HOME/.tmux.conf
