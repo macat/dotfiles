@@ -7,6 +7,8 @@ if &compatible
   set nocompatible
 endif
 
+let g:plug_url_format = 'git@github.com:%s.git'
+
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'

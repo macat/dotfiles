@@ -14,14 +14,14 @@ fi
 
 # ===================================================================
 # path, the 0 in the filename causes this to load first
-export PATH=$PATH:$HOME/.yadr/bin:$HOME/.yadr/bin/yadr
+export PATH=$PATH:$HOME/.dotfiles/bin:$HOME/.dotfiles/bin/dotfiles
 
 
 # ===================================================================
 # Aliases in this file are bash and zsh compatible
 
 # Don't change. The following determines where YADR is installed.
-yadr=$HOME/.yadr
+dotfiles=$HOME/.dotfiles
 
 # Moving around
 alias cdb='cd -'
@@ -102,10 +102,13 @@ alias tf='tail -f'
 alias lh='ls -alt | head' # see the last modified files
 alias cl='clear'
 
+alias vi='nvim'
+alias vim='nvim'
+
 # ===================================================================
-# Load themes from yadr and from user's custom prompts (themes) in ~/.zsh.prompts
+# Load themes from dotfiles and from user's custom prompts (themes) in ~/.zsh.prompts
 autoload promptinit
-fpath=($HOME/.yadr/zsh/prezto-themes $fpath)
+fpath=($HOME/.dotfiles/zsh/prezto-themes $fpath)
 promptinit
 # Makes git auto completion faster favouring for local completions
 __git_files () {

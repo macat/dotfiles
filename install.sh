@@ -10,3 +10,6 @@ ln -nfs $HOME/.dotfiles/zshrc $HOME/.zshrc
 ln -nfs $HOME/.dotfiles/zsh/prezto $HOME/.zprezto
 ln -nfs $HOME/.dotfiles/zsh/prezto-override/zpreztorc $HOME/.zpreztorc
 ln -nfs $HOME/.dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
