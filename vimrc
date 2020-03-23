@@ -23,7 +23,6 @@ Plug 'mattn/gist-vim'
 Plug 'tomtom/tlib_vim'
 Plug 'mattn/webapi-vim'
 Plug 'bling/vim-airline'
-Plug 'airblade/vim-rooter'
 Plug 'rizzatti/funcoo.vim'
 
 Plug 'stephpy/vim-yaml'
@@ -557,6 +556,9 @@ let g:ale_fixers = {
 
 let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
 
+let g:ale_terraform_fmt_executable = $TF_EXECUTABLE
+let g:ale_terraform_terraform_executable = $TF_EXECUTABLE
+
 let g:ale_typescript_tslint_use_global = 1
 let g:ale_typescript_tslint_executable = 'tslint'
 let g:ale_typescript_tslint_config_path = '~/.tslint.json'
@@ -573,3 +575,8 @@ let g:LanguageClient_diagnosticsList = "Location"
 nnoremap gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap gt :call LanguageClient#textDocument_typeDefinition()<CR>
 nnoremap gr :call LanguageClient#textDocument_references()<CR>
+
+" Add machine specific config
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
