@@ -24,6 +24,9 @@ Plug 'tomtom/tlib_vim'
 Plug 'mattn/webapi-vim'
 Plug 'bling/vim-airline'
 Plug 'rizzatti/funcoo.vim'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 
 Plug 'stephpy/vim-yaml'
 Plug 'hashivim/vim-terraform'
@@ -43,13 +46,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'w0rp/ale'
 
+"Plug '/data/users/macatt/fbsource/fbcode/experimental/emersonford/fb.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -65,6 +67,7 @@ set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+au CursorHold * checktime
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -223,9 +226,6 @@ map ,} ysiw}
 map ,{ ysiw{
 vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
-
-" Semicolon at end of line by typing ;;
-inoremap ;; <C-o>A;<esc>
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -427,57 +427,6 @@ au FocusGained,BufEnter * :silent! !
 " NEOVIM
 set inccommand=split
 
-" ALE
-" ===
-
-let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_column_always = 1
-let g:ale_echo_cursor = 0
-let g:ale_lint_on_enter = 0
-
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-let g:ale_linters = {
-\   'python': ['flake8', 'mypy'],
-\   'c': [],
-\   'cpp': [],
-\   'cmake': ['cmakelint'],
-\   'typescript': ['tslint'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'sh': ['shellcheck']
-\}
-
-let g:ale_fixers = {
-\   'python': ['yapf', 'isort'],
-\   'c': ['clang-format'],
-\   'cpp': ['clang-format'],
-\   'json': ['jq'],
-\   'cmake': ['cmakeformat'],
-\   'typescript': ['tslint'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'terraform': ['terraform'],
-\}
-
-let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
-
-let g:ale_typescript_tslint_use_global = 1
-let g:ale_typescript_tslint_executable = 'tslint'
-let g:ale_typescript_tslint_config_path = '~/.tslint.json'
-
 " --column: Show column number
 " --line-number: Show line number
 " --no-heading: Do not show file headings in results
@@ -508,75 +457,43 @@ let g:editorconfig_blacklist = {
 
 let g:terraform_align=1
 
-" ALE
-" ===
-
-let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_column_always = 1
-let g:ale_echo_cursor = 0
-let g:ale_lint_on_enter = 0
-
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
-
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-let g:ale_linters = {
-\   'python': ['flake8', 'mypy'],
-\   'c': [],
-\   'cpp': [],
-\   'cmake': ['cmakelint'],
-\   'typescript': ['tslint'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'sh': ['shellcheck']
-\}
-
-let g:ale_fixers = {
-\   'python': ['yapf', 'isort'],
-\   'c': ['clang-format'],
-\   'cpp': ['clang-format'],
-\   'json': ['jq'],
-\   'cmake': ['cmakeformat'],
-\   'typescript': ['tslint'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'terraform': ['terraform'],
-\   'html': ['prettier'],
-\}
-
-let g:ale_python_mypy_options = '--disallow-untyped-decorators --follow-imports silent --ignore-missing-imports --show-column-numbers --strict-optional --warn-no-return --warn-redundant-casts --warn-return-any --warn-unused-configs --warn-unused-ignores'
-
-let g:ale_terraform_fmt_executable = $TF_EXECUTABLE
-let g:ale_terraform_terraform_executable = $TF_EXECUTABLE
-
-let g:ale_typescript_tslint_use_global = 1
-let g:ale_typescript_tslint_executable = 'tslint'
-let g:ale_typescript_tslint_config_path = '~/.tslint.json'
-
 " LSP
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'cpp': ['clangd', '-background-index', '-log=verbose', '-compile-commands-dir=/Users/att/w/builds/cs-debug', '-pch-storage=memory',],
-    \ }
+lua <<EOF
+require'nvim_lsp'.pyls.setup{
+  cmd = {"/usr/local/bin/pyls-language-server"}
+}
+EOF
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" Use LSP omni-completion in Python files.
+autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
-let g:LanguageClient_diagnosticsList = "Location"
-
-" Or map each action separately
-nnoremap gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap gt :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap gr :call LanguageClient#textDocument_references()<CR>
 
 " Add machine specific config
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
+
+" NCM
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
