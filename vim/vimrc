@@ -1,6 +1,5 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set shell=zsh
 filetype off
 
 if &compatible
@@ -19,18 +18,18 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lastpos.vim'
 Plug 'sjl/gundo.vim'
-Plug 'mattn/gist-vim'
 Plug 'tomtom/tlib_vim'
 Plug 'mattn/webapi-vim'
 Plug 'bling/vim-airline'
 Plug 'rizzatti/funcoo.vim'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 
 Plug 'stephpy/vim-yaml'
 Plug 'hashivim/vim-terraform'
-Plug 'fatih/vim-go'
 Plug 'peterhoeg/vim-qml'
 
-"Plug 'icymind/NeoSolarized'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -39,6 +38,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'roxma/nvim-yarp'
 Plug 'leafgarland/typescript-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+
+
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -55,6 +61,7 @@ set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+au CursorHold * checktime
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -213,9 +220,6 @@ map ,} ysiw}
 map ,{ ysiw{
 vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
-
-" Semicolon at end of line by typing ;;
-inoremap ;; <C-o>A;<esc>
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
@@ -443,8 +447,42 @@ let g:editorconfig_blacklist = {
     \ 'pattern': ['\.un~$']}
 
 let g:terraform_align=1
+" LSP
+lua <<EOF
+require'nvim_lsp'.pyls.setup{
+  cmd = {"/usr/local/bin/pyls-language-server"}
+}
+EOF
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" Use LSP omni-completion in Python files.
+autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " Add machine specific config
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
+
+" NCM
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
