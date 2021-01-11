@@ -419,7 +419,16 @@ if has('conceal')
   set conceallevel=0
 endif
 
+let g:editorconfig_blacklist = {
+    \ 'filetype': ['git.*', 'fugitive'],
+    \ 'pattern': ['\.un~$']}
 
+" LSP
+lua <<EOF
+require'nvim_lsp'.pyls.setup{
+  cmd = {"/usr/local/bin/pyls-language-server"}
+}
+EOF
 
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -433,7 +442,6 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " Use LSP omni-completion in Python files.
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd Filetype c,cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
-
 
 " Add machine specific config
 if filereadable(expand("~/.vimrc.after"))
