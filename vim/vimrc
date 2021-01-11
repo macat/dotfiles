@@ -21,30 +21,19 @@ Plug 'sjl/gundo.vim'
 Plug 'tomtom/tlib_vim'
 Plug 'mattn/webapi-vim'
 Plug 'bling/vim-airline'
-Plug 'rizzatti/funcoo.vim'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
 
 Plug 'stephpy/vim-yaml'
 Plug 'hashivim/vim-terraform'
-Plug 'peterhoeg/vim-qml'
 
 Plug 'morhetz/gruvbox'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'roxma/nvim-yarp'
 Plug 'leafgarland/typescript-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
-
 Plug 'neovim/nvim-lspconfig'
-
-Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -263,7 +252,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
-let g:go_snippet_engine = "neosnippet"
 
 " FZF
 " ===
@@ -348,7 +336,6 @@ nnoremap <silent> ,x :bn<CR>
 " =======
 let g:airline_powerline_fonts=1
 let g:airline_section_a = ''
-let g:airline#extensions#ale#enabled = 1
 
 
 " Visual Paste
@@ -405,16 +392,6 @@ endfunction
 command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
 nmap ,w :StripTrailingWhitespaces<CR>
 
-" ============================
-" neosnippet
-" ============================
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-vnoremap <leader>bd c<c-r>=system('base64 --decode', @")<cr><esc><Paste>
-vnoremap <leader>be c<c-r>=system('base64', @")<cr><esc><Paste>
-
 " Trigger autoread when changing buffers or coming back to vim.
 au FocusGained,BufEnter * :silent! !
 
@@ -442,12 +419,8 @@ if has('conceal')
   set conceallevel=0
 endif
 
-" LSP
-lua <<EOF
-require'nvim_lsp'.pyls.setup{
-  cmd = {"/usr/local/bin/pyls-language-server"}
-}
-EOF
+
+
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -459,6 +432,7 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " Use LSP omni-completion in Python files.
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype c,cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 
 " Add machine specific config
@@ -482,3 +456,4 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 " Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
